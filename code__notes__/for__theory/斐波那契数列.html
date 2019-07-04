@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 斐波那契数列
+        // 思路1：递归。思路2：叠加
+        // 求第几个数，求数组，求数组之和
+
+        // 斐波那契数列，第几个
+        function fiNumber(n) {
+            let a = 1;
+            let b = 1;
+            let c = 1;
+            if (n <= 2) {
+                a = 1;
+            } else if (n > 2) {
+                for (var i = 0; i < n - 2; i++) {
+                    b = a;
+                    a = c;
+                    c = a + b;
+                    console.log(c, a);
+                }
+            }
+            return c;
+        }
+        var fn1 = 6;
+        // console.log(fiNumber(fn1));
+
+
+        // 斐波那契数列，数组
+        function fiArray(n) {
+            let a = 1;
+            let b = 1;
+            let c = 1;
+            let arr = [];
+            for (var i = 0; i < n; i++) {
+                if (i <= 1) {
+                    c = 1;
+                } else if (i > 1) {
+                    b = a;
+                    a = c;
+                    c = a + b;
+                }
+                arr.push(c);
+                console.log(arr);
+            }
+            return arr;
+        }
+        var fn1 = 6;
+        console.log(fiArray(fn1));
+
+        // 斐波那契数列求和，数字叠加
+        function perimeter(n) { //定义两个初始值为1的变量，叠加。不需要使用回调函数
+            var a = 1;
+            var b = 1;
+            var index = 0;
+            var res = 1;
+            for (var i = 0; i < n; i++) {
+                res = res + b;
+                console.log(res);
+                index = b;
+                b = a + b;
+                a = index;
+                console.log(a, b);
+            }
+            return res;
+        }
+
+        var n1 = 5;
+        var n2 = 7;
+        var n3 = 20;
+        var n4 = 30;
+        // console.log(perimeter(n3));
+
+        //斐波那契数列求和，回调函数
+        function perimeter01(n) { //使用回调函数，虽然可以计算结果，但是效率不高，被系统卡住
+            var num = n + 1;
+            var res = 0;
+            for (var i = 0; i < num; i++) {
+                function fibo(num) {
+                    if (num < 2) {
+                        return 1;
+                    } else {
+                        return fibo(num - 1) + fibo(num - 2);
+                    }
+                }
+                res += fibo(i);
+            }
+            res *= 4;
+            return res;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 冒泡排序： 封装函数，将传入的数组里的数据升序排列。
+        // 思路：找到最大的数，往后面移动
+        // 步骤1：当前元素跟下一个元素对比
+        // 步骤2：把最大的逐个往后排列
+
+        function bubbleSort(arr) {
+            for(var i = 0; i < arr.length; i++) {//遍历数组，根据数组的长度设定循环次数
+                for(var j = 0; j < arr.length - 1 - i; i++) {
+                    //设定相邻两个数之间比较大小的次数。减去i表示已经拍过的数不需要再比较，可以省去一半的计算量
+                    if(arr[i] > arr[i+1]) {//比较相邻两个数之间的大小，如果第一个数比第二个数大，则满足条件
+                        var subs0 = arr[i];//将左边的数值暂时存放在sub0
+                        arr[i] = arr[i+1];//把右边的数值赋给大数，
+                        arr[i+1] = subs0;//把sub0里面的值，赋给右边的数，实现两个数的数值交换。
+                    }
+                    // console.log(arr);
+                }
+                return arr;//返回升序排列的数组 (注意return的位置，放在第一个for循环的里面，第二个for循环的外面)
+            }
+        }
+
+        var arr0 = [10,2,8,55,32,18,9,11,30,16,19,20];//试验数组
+        console.log(arr0);//打印试验数组，方便前后对比
+        var orderArr = bubbleSort(arr0);//将试验数组传给函数，获得升序排列后的数组。
+        console.log(orderArr); 
+
+    
+    </script>
+
+</head>
+<body>
+    <!-- 
+        冒泡排序:(找到最大的数，往后面移动)升序
+        - 当前元素跟下一个元素对比
+        - 把最大的逐个往后排列
+        var arr = [10,2,8,55,32,18,9,11,30,16,19,20]
+     -->
+</body>
+</html>

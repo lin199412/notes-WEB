@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //列举几种高性能的数组去重方案
+        // 参考文章： https://www.cnblogs.com/wisewrong/p/9642264.html
+        let arr0 = [1, 1, 2, 3, 4, 4, 4, 5, 5, 6, 6, 7, 7, 7, 8, 8];
+        let arr1 = [10, 1, 20, 3, 40, 4, 4, 50, 5, 6, 60, 7, 7, 70, 8, 8];
+
+        // ES6 新数据类型 map
+        function distinct(a, b) {
+            return Array.from(new Set([...a, ...b]))
+        }
+        let arr2 = distinct(arr0, arr1);
+        console.log(arr2);
+
+        // 利于对象键名不重复的特性去重
+        function distinct2(a, b) {
+            let arr = a.concat(b)
+            let result = []
+            let obj = {}
+
+            for (let i of arr) {
+                if (!obj[i]) {
+                    result.push(i)
+                    obj[i] = 1
+                }
+            }
+            return result
+        }
+        let arr3 = distinct(arr0, arr1);
+        console.log(arr3);
+
+        // 利用filter和indexOf去重
+        function distinct(a, b) {
+            let arr = a.concat(b);
+            return arr.filter((item, index) => {
+                return arr.indexOf(item) === index
+            })
+        }
+        let arr4 = distinct(arr0, arr1);
+        console.log(arr4);
+    </script>
+</body>
+
+</html>

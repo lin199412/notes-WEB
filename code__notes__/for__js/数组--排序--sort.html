@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        let arr1 = [8, 2, 5, 3, 9, 4, 5];
+        let arr2 = [...arr1];
+        //升序，从小到大
+        // arr2.sort((a, b) => {
+        //     return a - b
+        // });
+        //降序，从大到小
+        arr2.sort((a, b) => {
+            return b - a
+        });
+        console.log(arr1, arr2);
+
+
+        let arr3 = [{
+            id: '11',
+            name: '赵',
+            price: '121',
+            comments: '211'
+        }, {
+            id: '12',
+            name: '钱',
+            price: '128',
+            comments: '288'
+        }, {
+            id: '13',
+            name: '孙',
+            price: '98',
+            comments: '91'
+        }, {
+            id: '14',
+            name: '李',
+            price: '111',
+            comments: '54'
+        }]
+        let arr4 = JSON.parse(JSON.stringify(arr3));
+        // 给对象的键值排序，降序
+        function compare(p) {
+            return function (m, n) {
+                var a = m[p];
+                var b = n[p];
+                return b - a; //降序
+            }
+        }
+        // 给对象的键值排序，升序
+        function compare2(p) {
+            return function (m, n) {
+                var a = m[p];
+                var b = n[p];
+                return a - b; //升序
+            }
+        }
+        // arr4.sort(compare('price'));
+        arr4.sort(compare2('comments'));
+        console.log(arr3,arr4);
+    </script>
+</body>
+
+</html>

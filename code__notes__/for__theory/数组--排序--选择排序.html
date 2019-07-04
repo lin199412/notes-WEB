@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 选择排序： 封装函数，将传入的数组里的数据升序排列。
+        // 思路：找到最小的数，往前排列
+        // 步骤1：把当前元素分别跟后面的元素对比
+        // 步骤2：记录最小数的下标（把“当前的数字”与“剩下的数字中的最小数”互换位置）
+        var indexNum = 0;
+        var count = 0;
+        function selectionSort(arr) {
+            for(var i = 0; i < arr.length; i++) {
+                count = i;
+                for(var j = i + 1; j < arr.length; j++){//从i后面开始找最小数
+                    if(arr[j] < arr[count]){//如果找到的数大于count，将j的值赋给count。循环后得到i后面的最小数。
+                        count = j;
+                    }
+                }
+                indexNum = arr[i];//用indexNum寄存arr[i]
+                arr[i] = arr[count];//将搜索到的 “i后面的最小数” 赋予i
+                arr[count] = indexNum;//将indexNum存储的i原来的值，赋给“i后面的最小数” ，实现两个数的数值互换。
+                // console.log(arr);
+            }
+            return arr;
+        }
+
+
+
+
+        var arr0 = [10, 2, 8, 55, 32, 18, 9, 11, 30, 16, 19, 20];//试验用数组
+        console.log(arr0);
+        var orderArr = selectionSort(arr0);//实参：试验用数组。获得排序后的数组
+        console.log(orderArr);
+
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
