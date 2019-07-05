@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100%;
+            height: 2000px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+
+    </div>
+    <script>
+        console.log('121');
+
+        window.addEventListener("scroll", () => {
+            var scrollTop = window.scrollY;
+            console.log(scrollTop);
+            let h = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+            console.log(h);
+        });
+
+    </script>
+</body>
+
+</html>

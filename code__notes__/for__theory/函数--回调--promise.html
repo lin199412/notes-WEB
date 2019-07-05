@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const p1 = new Promise(function (resolve, reject) {
+        //     resolve('success1');
+        //     reject('success2');
+        //     console.log('fail');
+        // });
+        // const p2 = p1.then(function (value) {
+        //     console.log(value);
+        //     return '12323';
+        // });
+        // p2.then(function (value) {
+        //     console.log(value);
+        // });
+
+        // function say(value) {
+        //     console.log(value);
+        // }
+        // console.log(say);
+        // console.log(say('hi js.'));
+
+        function toCall(value, call) {
+            console.log(value);
+            return call(value);
+        }
+        // (()=>{
+        //     console.log('789');
+        // })()
+        function ignore(i) {
+            return i+1;
+        }
+        let add = toCall(1,ignore);
+        console.log(add);
+
+
+        function addSqua(num1, num2, callback) {
+            var sum = num1 + num2;
+            return callback(sum);
+        }
+
+        function squa(num) {
+            return num * num;
+        }
+
+        let num = addSqua(1, 2, squa);
+        console.log(num);
+    </script>
+</body>
+
+</html>

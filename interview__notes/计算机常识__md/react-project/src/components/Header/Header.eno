@@ -1,0 +1,26 @@
+<template name="Header">
+    <div>
+        <header>
+            {this.state.title}
+        </header>
+    </div>
+</template>
+
+<script>
+    // JS
+    export default class {
+        state = {
+            title: '微信'
+        }
+    }
+</script>
+<style>
+    header {
+        height: 50px;
+        width: 100%;
+        text-align: center;
+        line-height: 50px;
+        background-color:red;
+        color: white;
+    }
+</style>

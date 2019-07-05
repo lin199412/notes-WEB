@@ -1,0 +1,21 @@
+<template name="Header">
+    <header>{this.state.title}</header>
+</template>
+<script>
+// JS
+export default class {
+    state = {
+        title: 'Cnode'
+    }
+}
+</script>
+<style>
+header{
+    width: 100%;
+    height: 50px;
+    color: white;
+    background-color: red;
+    line-height: 50px;
+    text-align: center;
+}
+</style>

@@ -1,0 +1,35 @@
+<template name="Search">
+    <div className={
+        this.state.bool?'weui-search-bar':'weui-search-bar weui-search-bar_focusing'
+    } id="searchBar">
+        <form className="weui-search-bar__form">
+            <div className="weui-search-bar__box">
+                <i className="weui-icon-search"></i>
+                <input type="search" className="weui-search-bar__input" id="searchInput" placeholder="搜索" required="" />
+                <a className="weui-icon-clear" id="searchClear"></a>
+            </div>
+            <label onClick={this.toggle.bind(this)} className="weui-search-bar__label" id="searchText">
+                <i className="weui-icon-search"></i>
+                <span>搜索</span>
+            </label>
+        </form>
+        <a onClick={this.toggle.bind(this)} className="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+    </div>
+</template>
+<script>
+    // JS
+    export default class {
+        // Model
+        state = {
+            bool: !0
+        }
+        toggle(){
+            this.setState({
+                bool: !this.state.bool
+            })
+        }
+    }
+</script>
+<style lang="scss">
+    div{margin:0}
+</style>

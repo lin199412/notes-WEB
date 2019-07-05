@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function show(num) {
+            num--; //4
+            if (num <= 0) {
+                return 1;
+            }
+            show(num); //遇到入口又去找循环体
+            console.log(num); //上面没有结束不会打印    1 2 3 4
+        }
+
+        show(5);
+
+        /*
+         	递归函数：
+         		show(5)
+         		
+         		function show(5) {
+        			num--;//4
+        			if(num <= 0) {
+        				return 1;
+        			}
+        			function show(4) {
+        				num--;//3
+        				if(num <= 0) {
+        					return 1;
+        				}
+        				function show(3) {
+        					num--;//2
+        					if(num <= 0) {
+        						return 1;
+        					}
+        					function show(2) {
+        						num--;//1
+        						if(num <= 0) {
+        							return 1;
+        						}
+        						function show(1) {
+        							num--;//0
+        							if(num <= 0) {
+        								return 1;
+        							}
+        							show(num);
+        							console.log(num);//不会打印
+        						}
+        						console.log(num);//1
+        					}
+        					console.log(num);//2
+        				}
+        				console.log(num);//3
+        			}
+        			console.log(num);//4
+        		}
+        */
+    </script>
+</body>
+
+</html>
