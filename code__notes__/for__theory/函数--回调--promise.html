@@ -10,50 +10,46 @@
 
 <body>
     <script>
-        // const p1 = new Promise(function (resolve, reject) {
-        //     resolve('success1');
-        //     reject('success2');
-        //     console.log('fail');
-        // });
-        // const p2 = p1.then(function (value) {
-        //     console.log(value);
-        //     return '12323';
-        // });
-        // p2.then(function (value) {
-        //     console.log(value);
-        // });
-
-        // function say(value) {
-        //     console.log(value);
-        // }
-        // console.log(say);
-        // console.log(say('hi js.'));
-
-        function toCall(value, call) {
+        const p1 = new Promise(function (resolve, reject) {
+            resolve('success1');
+            reject('success2');
+            console.log('fail');
+        });
+        const p2 = p1.then(function (value) {
             console.log(value);
-            return call(value);
+            return '12323';
+        });
+        p2.then(function (value) {
+            console.log(value);
+        });
+
+        function say(value) {
+            console.log(value);
         }
-        // (()=>{
-        //     console.log('789');
-        // })()
-        function ignore(i) {
-            return i+1;
-        }
-        let add = toCall(1,ignore);
-        console.log(add);
+        console.log(say);
+        console.log(say('hi js.'));
 
 
-        function addSqua(num1, num2, callback) {
-            var sum = num1 + num2;
-            return callback(sum);
-        }
+        // function toCall(value, call) {
+        //     console.log(value);
+        //     return call(value);
+        // }
+        // function ignore(i) {
+        //     return i+1;
+        // }
+        // let add = toCall(1,ignore);
+        // console.log(add);
 
-        function squa(num) {
-            return num * num;
-        }
 
-        let num = addSqua(1, 2, squa);
-        console.log(num);
+        // function addSqua(num1, num2, callback) {
+        //     var sum = num1 + num2;
+        //     return callback(sum);
+        // }
+        // function squa(num) {
+        //     return num * num;
+        // }
+        // let num = addSqua(1, 2, squa);
+        // console.log(num);
     </script>
 </body>
 
