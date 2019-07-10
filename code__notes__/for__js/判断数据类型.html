@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var ob = {name:"lin"};
+        console.log(Object.prototype.toString.call(ob));
+        // [object Object]
+
+        console.log(Object.prototype.toString.call(''));
+        // [object String]
+
+        console.log(Object.prototype.toString.call(1));
+        // [object Number]
+
+        console.log(Object.prototype.toString.call(true)); 
+        // [object Boolean]
+        
+        console.log(Object.prototype.toString.call(Symbol()));
+        //[object Symbol]
+
+        console.log(Object.prototype.toString.call(undefined));
+        // [object Undefined]
+
+        console.log(Object.prototype.toString.call(null));
+         // [object Null]
+
+        console.log(Object.prototype.toString.call(new Function()));
+        // [object Function]
+
+        console.log(Object.prototype.toString.call(new Date()));
+        // [object Date]
+
+        console.log(Object.prototype.toString.call([]));
+        // [object Array]
+
+        console.log(Object.prototype.toString.call(new RegExp()));
+        // [object RegExp]
+
+        console.log(Object.prototype.toString.call(new Error()));
+        // [object Error]
+
+        console.log(Object.prototype.toString.call(document));
+        // [object HTMLDocument]
+
+        console.log(Object.prototype.toString.call(window));
+        //[object global] window 是全局对象 global 的引用
+        
+        console.log(Object.prototype.toString.call(NaN));
+        // [object Number]
+        console.log(isNaN(NaN));
+        // true
+        console.log(isNaN('121'));
+        // true
+
+        console.log(Array.isArray('121'));
+        // false
+        console.log(Array.isArray([]));
+        // true
+    </script>
+</body>
+
+</html>
