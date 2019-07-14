@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let obj = {
+            y: 1,
+            m: () => {},
+            b: 3
+        };
+        let cloneObj = {};
+        for( let k in obj) {
+            if(typeof obj[k] === "function") {
+                cloneObj[k] === eval(obj[k].toString());
+            }else{
+                cloneObj[k] = obj[k];
+            }
+        }
+
+        console.log(cloneObj);
+        cloneObj.y = "与神对话";
+        console.log(cloneObj.y);
+        console.log(obj.y);
+
+
+        test = ()=>{
+            var a = 1;
+        }
+        let cloneTest = eval(test.toString());
+        console.log(test);
+        console.log(cloneTest);
+    </script>
+</body>
+</html>

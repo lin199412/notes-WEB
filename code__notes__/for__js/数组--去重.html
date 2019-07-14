@@ -19,6 +19,9 @@
         function distinct(a, b) {
             return Array.from(new Set([...a, ...b]))
         }
+        // function distinct(a, b) {
+        //     return new Set([...a, ...b])
+        // }
         let arr2 = distinct(arr0, arr1);
         console.log(arr2);
 
@@ -30,14 +33,16 @@
 
             for (let i of arr) {
                 if (!obj[i]) {
-                    result.push(i)
-                    obj[i] = 1
+                    result.push(i);
+                    obj[i] = 1;
+                    console.log(obj);
                 }
             }
             return result
         }
-        let arr3 = distinct(arr0, arr1);
+        let arr3 = distinct2(arr0, arr1);
         console.log(arr3);
+
 
         // 利用filter和indexOf去重
         function distinct(a, b) {
