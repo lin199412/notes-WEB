@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // for (var i = 0; i < 5; i++) {
+        //     (function () {
+        //         setTimeout(function () {
+        //             console.log(i);
+        //         }, i * 1000);
+        //     })(i);
+        // }
+        //打印5个5
+
+        // 原生js实现前端路由
+        // function Router() {
+        //     this.routes = {};
+        //     this.currentUrl = '';
+        // }
+        // Router.prototype.route = function (path, callback) {
+        //     this.routes[path] = callback || function () {};
+        // };
+        // Router.prototype.refresh = function () {
+        //     this.currentUrl = location.hash.slice(1) || '/';
+        //     this.routes[this.currentUrl]();
+        // };
+        // Router.prototype.init = function () {
+        //     window.addEventListener('load', this.refresh.bind(this), false);
+        //     window.addEventListener('hashchange', this.refresh.bind(this), false);
+        // }
+        // window.Router = new Router();
+        // window.Router.init();
+
+        //冒泡排序
+        // for (var i = 0; i < arr.length; i++) {
+        //     for (var j = 0; j < arr.length - 1 - i; j++) {
+        //         if (arr[j] > arr[j + 1]) {
+        //             arr[j] = arr[j] + arr[j + 1];
+        //             arr[j + 1] = arr[j] - arr[j + 1];
+        //             arr[j] = arr[j] - arr[j + 1];
+        //         }
+        //     }
+        // }
+        
+        // 切割网址
+        var url = "http://360.cn/index.php?key0=0&key1=1&key2=2";
+        var arr1 = url.split('?')[1];
+        console.log(arr1);
+        var arr2 = arr1.split('&');
+        console.log(arr2);
+        var obj = {};
+        for(var i = 0; i <3; i++){
+            var key1 = arr2[i].split('=')[0];
+            obj[key1] =arr2[i].split('=')[1];
+        }
+        console.log(obj);
+    </script>
+</body>
+
+</html>
