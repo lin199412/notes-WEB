@@ -1,0 +1,45 @@
+<!--
+ * @Author: linweibin
+ * @Description: 
+ * @props: 
+ * @event: 
+ * @Date: 2019-08-26 17:24:10
+ * @LastEditors: linweibin
+ * @LastEditTime: 2019-08-26 17:37:07
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        let arr1 = [
+            {
+                id: 1,
+                name: '阅读'
+            }, {
+                id: 2,
+                name: '音乐'
+            }, {
+                id: 3,
+                name: '瑜伽'
+            }
+        ]
+        let findSomeFun = arr1.some(item => item.name == '阅读');
+        console.log(findSomeFun);
+
+        var ages = [23, 44, 3]
+        if (ages.some(age => age < 10)) {
+            console.log('true')
+        }
+    </script>
+</body>
+
+</html>
