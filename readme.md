@@ -2,6 +2,8 @@
 https://github.com/lin199412
 <br>
 798349003@qq.com
+<br>
+https://gitee.com/andylin1994
 
 <h2>分类</h2>
 - bugs_notes （bug合集，学习和做项目过程中遇到的bug合集，主要包括js、css和数据库）
