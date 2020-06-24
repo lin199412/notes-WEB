@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>棋盘判断</title>
+</head>
+<body>
+    <div>题目: 用一个7*6的二维数组代表棋盘, 'R'代表红色棋子, 'Y'代表黄色棋子, '-'代表空格, 玩具通过水平垂直或者对角线连接四个棋子获胜, 
+        请判断当前的棋局, 'R'代表红色获胜, 'Y'代表黄色获胜, 'draw'代表棋盘已满且和局, 'in progress'代表游戏仍在进行中
+    </div>
+    <div>
+        思路1: 先判断是否有一方获胜, 再判断是否还有空格. 
+        关键在于找出所有的四个棋子连线, 三种情况分别判断?
+    </div>
+    <div>
+        Connect Four is a game in which two players take turns dropping red or yellow colored discs into a vertically suspended 7 x 6 grid. Discs fall to the bottom of the grid, occupying the next available space.
+
+        A player wins by connecting four of their discs horizontally, vertically or diagonally.
+
+        Given a multidimensional array representing a Connect Four board, your task is to create a function which can determine who won the game.
+
+        Your connectFour function will be passed an array matrix similar to this:
+
+        [['-','-','-','-','-','-','-'],
+         ['-','-','-','-','-','-','-'],
+         ['-','-','-','R','R','R','R'],
+         ['-','-','-','Y','Y','R','Y'],
+         ['-','-','-','Y','R','Y','Y'],
+         ['-','-','Y','Y','R','R','R']];
+        'R' represents a red disc
+
+        'Y' represents a yellow disc
+
+        '-' represents an unoccupied space
+
+        In this example the red player won by making a horizontal line of 4 red discs.
+
+        If the red player won, your connectFour function should return 'R'. If the yellow player won, it should return 'Y'. If the board is full and no one won it should return 'draw'. If the game is still in progress it should return 'in progress'.
+
+    </div>
+</body>
+
+<script>
+    let data1 = [
+        ['-','-','-','-','-','-','-'],
+        ['-','-','-','-','-','-','-'],
+        ['-','-','-','R','R','R','R'],
+        ['-','-','-','Y','Y','R','Y'],
+        ['-','-','-','Y','R','Y','Y'],
+        ['-','-','Y','Y','R','R','R']
+    ];
+    let data2 = [
+        ['-','-','-','-','-','-','-'],
+        ['-','-','-','-','-','-','-'],
+        ['-','-','-','R','R','R','Y'],
+        ['-','-','-','Y','Y','R','Y'],
+        ['-','-','-','Y','R','Y','Y'],
+        ['-','-','Y','Y','R','R','Y']
+    ];
+    let data3 = [
+        ['-','-','-','-','-','-','-'],
+        ['-','-','-','-','-','-','-'],
+        ['-','-','-','R','R','Y','R'],
+        ['-','-','-','Y','Y','R','Y'],
+        ['-','-','-','Y','R','Y','Y'],
+        ['-','-','Y','Y','R','R','Y']
+    ];
+    let data4 = [
+        ['-','-','-','-','-','-','-'],
+        ['-','-','-','-','-','-','-'],
+        ['-','-','-','Y','R','Y','R'],
+        ['-','-','-','Y','Y','R','Y'],
+        ['-','-','-','R','R','Y','Y'],
+        ['-','-','Y','Y','R','R','Y']
+    ];
+    let data5 = [
+        ['R','Y','Y','R','Y','Y','R'],
+        ['Y','R','Y','Y','Y','R','R'],
+        ['Y','Y','R','R','R','Y','R'],
+        ['Y','Y','R','Y','Y','R','Y'],
+        ['R','Y','R','R','R','Y','Y'],
+        ['R','R','Y','Y','R','R','R']
+    ];
+    let data6 = [
+        ['-','-','-','-','-','-','-'],
+        ['-','-','-','-','-','-','-'],
+        ['-','-','-','Y','R','Y','R'],
+        ['-','-','-','Y','Y','R','Y'],
+        ['-','-','-','R','R','R','Y'],
+        ['-','-','Y','Y','R','R','Y']
+    ];
+    let data7 = [
+        ['-','-','-','-','-','-','-'],
+        ['-','-','-','-','-','-','-'],
+        ['-','-','-','Y','-','-','-'],
+        ['-','-','Y','R','-','-','-'],
+        ['-','Y','Y','R','R','-','-'],
+        ['Y','R','R','R','Y','-','-']
+    ];
+    function connectFour(board) {
+        let result = '';
+        let allArr = [];
+        for(let x = 0; x <= 5; x++) {
+            // console.log('x', x);
+            for(let y = 0; y <= 6; y++) {
+                let xArr = [];
+                let yArr = [];
+                let zArr1 = [];
+                let zArr2 = [];
+                allArr.push(board[x][y]);
+                // 横线
+                if (y < 4) {
+                    xArr.push(board[x][y], board[x][y+1], board[x][y+2], board[x][y+3]);
+                    let xString = xArr.join(',');
+                    // console.log('xArr', xArr);
+                    if (xString === 'R,R,R,R') {
+                        result = 'R';
+                        return result;
+                    } else if (xString === 'Y,Y,Y,Y') {
+                        result = 'Y';
+                        return result;
+                    }
+                    // 斜线: 右下
+                    if (x < 3) {
+                        zArr1.push(board[x][y], board[x+1][y+1], board[x+2][y+2], board[x+3][y+3]);
+                        let xString = zArr1.join(',');
+                        // console.log('zArr1', zArr1);
+                        if (xString === 'R,R,R,R') {
+                            result = 'R';
+                            return result;
+                        } else if (xString === 'Y,Y,Y,Y') {
+                            result = 'Y';
+                            return result;
+                        }
+                    }
+                }
+                // 斜线: 左下
+                if (y >= 3) {
+                    if (x < 3) {
+                        zArr2.push(board[x][y], board[x+1][y-1], board[x+2][y-2], board[x+3][y-3]);
+                        let xString = zArr2.join(',');
+                        // console.log('zArr2', zArr2);
+                        if (xString === 'R,R,R,R') {
+                            result = 'R';
+                            return result;
+                        } else if (xString === 'Y,Y,Y,Y') {
+                            result = 'Y';
+                            return result;
+                        }
+                    }
+                }
+                // 竖线
+                if (x < 3) {
+                    yArr.push(board[x][y], board[x+1][y], board[x+2][y], board[x+3][y]);
+                    let xString = yArr.join(',');
+                    // console.log('yArr', yArr);
+                    if (xString === 'R,R,R,R') {
+                        result = 'R';
+                        return result;
+                    } else if (xString === 'Y,Y,Y,Y') {
+                        result = 'Y';
+                        return result;
+                    }
+                }
+                if (x===5 && y===6) {
+                    if (allArr.includes('-')) {
+                    result = 'in progress';
+                    return result;
+                    } else {
+                        result = 'draw';
+                        return result;
+                    }
+                }
+            }
+        }
+    }
+    let gameResult = connectFour(data1);
+    console.log('gameResult', 'R', gameResult);
+    let gameResult2 = connectFour(data2);
+    console.log('gameResult2', 'Y', gameResult2);
+    let gameResult3 = connectFour(data3);
+    console.log('gameResult3', 'Y', gameResult3);
+    let gameResult4 = connectFour(data4);
+    console.log('gameResult4', 'Y', gameResult4);
+    let gameResult5 = connectFour(data5);
+    console.log('gameResult5', 'draw', gameResult5);
+    let gameResult6 = connectFour(data6);
+    console.log('gameResult6', 'in progress', gameResult6);
+    let gameResult7 = connectFour(data7);
+    console.log('gameResult7', 'Y', gameResult7);
+
+    // 学习
+    function connectFourNice(board) {
+        let boardStr = board.map(line => line.join('')).join(' ');
+        console.log('字符串', boardStr);
+        var m = [/(\w)\1\1\1/,
+                 /(\w).{7}\1.{7}\1.{7}\1/,
+                 /(\w).{8}\1.{8}\1.{8}\1/,
+                 /(\w).{6}\1.{6}\1.{6}\1/]
+                 .reduce((m, re) => m || boardStr.match(re), null);
+        return m ? m[1] : boardStr.replace('-', '') == boardStr ? 'draw' : 'in progress';
+    }
+    connectFourNice(data1);
+
+    let regTest1 = 'aabbbb'.match(/(\w)\1\1\1/);
+    console.log('正则', regTest1);
+</script>
+
+</html>
