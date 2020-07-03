@@ -3,30 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>js对象常用方法</title>
+    <title>js-数据处理-常见操作</title>
 </head>
 <body>
     
 </body>
 
 <script>
-    let obj1 = {label: 'a', value: '123'};
+    // js 数据类型
 
-    // assign 合并对象, 改变内存地址
-    Object.assign({}, obj1);
-
-    // keys 遍历对象, 返回key的数组
-    let keyArr = Object.keys(obj1);
-    console.log('keyArr', keyArr);
-    
-    // values 遍历对象, 返回value的数组
-    let valueArr = Object.values(obj1);
-    console.log('valueArr', valueArr);
-    
-    // getOwnPropertyNames 遍历对象, 为所欲为
-    Object.getOwnPropertyNames(obj1).forEach((key) => {
-        console.log(key + '---' + obj1[key]);
-    });
+    // js 判断数据类型
+    // typeof
+    Array.isArray();
+    // js 数据类型转换
 
 
 

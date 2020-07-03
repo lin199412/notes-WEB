@@ -20,7 +20,6 @@ https://github.com/lin199412
 - 其他 （框架与库的对比，性能优化）
 <br>
 
-<h2>寄语</h2>
-- 君不见黄河之水天上来，奔流到海不复回。
-<br>
-- 君不见高堂明镜悲白发，朝如青丝暮成雪。   
+<p align="center">
+  <img width="900" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593767765596&di=61b5705721b49f9059e146609c62f3e3&imgtype=0&src=http%3A%2F%2Fimg3.imgtn.bdimg.com%2Fit%2Fu%3D2564961638%2C1574001797%26fm%3D214%26gp%3D0.jpg">
+</p> 
