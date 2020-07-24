@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //
+
+        function accum(str) {
+            var sum = '';
+            var letter = '';
+            var letters = '';
+            for(var i = 0; i < str.length; i++){
+                for (var j = 0; j < i + 1; j++){//根据字母的位置连续输出相同的字母串
+                    if(j == 0){//第一个字母大写
+                        letter = str.substr(i,1);
+                        letter = letter.toUpperCase();//统一格式，把第一个字母转化为大写
+                    }else{//后面的字母小写
+                        letter = str.substr(i,1);
+                        letter = letter.toLowerCase();//统一格式，把后面的字母转化为小写
+                    }
+                    letters = letters + letter;
+                }
+                sum = sum +  letters + '-';//把获得的字母串拼接。可以改用join('-')方法
+                letters = '';
+                console.log(sum);
+            }
+            return sum.substr(0,sum.length - 1);//把后面的-删除
+        }
+        var ranLetter1 = 'abcd';
+        var ranLetter2 = ''
+        var accumLetter = accum(ranLetter1);
+        console.log(accumLetter);
+    
+    </script>
+</head>
+
+<body>
+    <!-- 
+        编写函数accum：
+        accum("abcd") -> "A-Bb-Ccc-Dddd"
+        accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+        accum("cwAt") -> "C-Ww-Aaa-Tttt"
+        accum的参数是一个字符串，它只包含来自a..z和的字母A..Z
+     -->
+     <!-- 
+         分隔字符串的方法
+         letter = str.substr(i,1);
+      -->
+      <!-- 
+          js字母大小写转换方法：
+        1、转换成大写：toUpperCase()
+        2、转换成小写：toLowerCase()
+        3、举例：
+        （1）var a="aBcD";
+            a=a.toUpperCase();
+            alert(a);
+            提示出来的就是 ABCD
+        （2）var a="aBcD";
+            a=a.toLowerCase();
+            alert(a);
+            提示出来的就是 abcd
+       -->
+</body>
+
+</html>

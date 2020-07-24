@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //需求分析：给定一个秒数，将它转化为人类可读时间
+        //详细规则
+        //得到的表达是由相同的部件的4 seconds，1 year等。
+        //通常，一个正整数和时间的有效单元中的一个，由空格分开。
+        //如果整数大于1，则时间单位为复数。
+
+        //组件由逗号和空格（", "）分隔。除了最后一个组件，它被分开" and "，就像用英语写的那样。
+
+        //比最不重要的时间更早出现更重要的时间单位。因此，1 second and 1 year不正确，但是1 year and 1 second。
+
+        //不同的组件具有不同的时间单位。所以没有重复的单位像5 seconds and 1 second。
+
+        //如果组件的值恰好为零，则根本不会出现该组件。因此，1 minute and 0 seconds无效，但应该是公正的1 minute。
+
+        //必须“尽可能”使用一个时间单位。这意味着该函数不应返回61 seconds，
+        //而是返回1 minute and 1 second。在形式上，组件指定的持续时间不得大于任何有效的更重要的时间单位。
+
+        function formatDuration(seconds) {
+            //console.log(seconds);
+            if (seconds == 0) {
+                return 'now';
+            } else {
+                var res = '';
+                var arr0 = [];
+                var arr1 = [];
+                var time1 = ['year', 'day', 'hour', 'minute', 'second'];
+                var time2 = ['years', 'days', 'hours', 'minutes', 'seconds'];
+                var year = Math.floor(seconds / 60 / 60 / 24 / 365);
+                var day = Math.floor(seconds / 60 / 60 / 24 % 365);
+                var hour = Math.floor(seconds / 60 / 60 % 24);
+                var min = Math.floor(seconds / 60 % 60);
+                var sec = seconds % 60;
+                arr0.push(year, day, hour, min, sec);
+                //console.log(arr0);
+
+                for (var i = 0; i < arr0.length; i++) {//给不为零的时间加单位
+                    if (arr0[i] == 1) {
+                        arr0[i] = arr0[i] + ' ' + time1[i];
+                        //console.log(arr0[i]);
+                    } else if (arr0[i] > 1) {
+                        arr0[i] = arr0[i] + ' ' + time2[i];
+                        //console.log(arr0[i]);
+                    }
+                }
+                //console.log(arr0);
+
+                for (var j = 0; j < arr0.length; j++) {
+                    if (arr0[j] != 0) {
+                        arr1.push(arr0[j]);
+                        //arr0.splice(j, 1);
+                    }
+                }
+                //console.log(arr1);
+
+                if (arr1.length == 1) {
+                    //console.log(res);
+                    return arr1[0];
+                } else if (arr1.length == 2) {
+                    res = arr1[0] + ' ' + 'and' + ' ' + arr1[1];
+                    //console.log(res);
+                    return res;
+                } else if (arr1.length > 2) {
+                    for (var k = 0; k < arr1.length - 1; k++) {
+                        res = res + arr1[k] + ',' + ' ';
+                    }
+                    res = res.slice(0, -2);
+                    //console.log(res);
+                    res = res + ' ' + 'and' + ' ' + arr1[arr1.length - 1];
+                    //console.log(res);
+                    return res;
+                }
+            }
+
+        }
+
+        var sec1 = 3662;
+        console.log(formatDuration(sec1));
+
+        //参考答案1 
+        function formatDuration(seconds) {
+            var time = { year: 31536000, day: 86400, hour: 3600, minute: 60, second: 1 },
+                res = [];
+
+            if (seconds === 0) return 'now';
+
+            for (var key in time) {
+                if (seconds >= time[key]) {
+                    var val = Math.floor(seconds / time[key]);
+                    res.push(val += val > 1 ? ' ' + key + 's' : ' ' + key);
+                    seconds = seconds % time[key];
+                }
+            }
+
+            return res.length > 1 ? res.join(', ').replace(/,([^,]*)$/, ' and' + '$1') : res[0]
+        }
+        //参考答案2  代码看起来很整洁、舒服
+        function formatDuration(seconds) {
+            if (!seconds) return "now";
+            var strout = "";
+            var s = seconds % 60;
+            seconds = (seconds - s) / 60;
+            var m = seconds % 60;
+            seconds = (seconds - m) / 60;
+            var h = seconds % 24;
+            seconds = (seconds - h) / 24;
+            var d = seconds % 365;
+            seconds = (seconds - d) / 365;
+            var y = seconds;
+
+            var english = [];
+            if (y) english.push(y + " year" + (y > 1 ? 's' : ''));
+            if (d) english.push(d + " day" + (d > 1 ? 's' : ''));
+            if (h) english.push(h + " hour" + (h > 1 ? 's' : ''));
+            if (m) english.push(m + " minute" + (m > 1 ? 's' : ''));
+            if (s) english.push(s + " second" + (s > 1 ? 's' : ''));
+
+            return english.join(", ").replace(/,([^,]*)$/, " and$1");
+
+        }
+    </script>
+</head>
+
+<body>
+    <!-- 
+    编写一个函数，以一种人性化的方式格式化持续时间，以秒为单位给出。
+        该函数必须接受非负整数。如果它为零，它就会返回"now"。
+        否则，持续时间表示为一个组合years，days，hours，minutes和seconds。
+
+        通过一个例子来理解它要容易得多：
+        formatDuration(62)    // returns "1 minute and 2 seconds"
+        formatDuration(3662)  // returns "1 hour, 1 minute and 2 seconds"
+        就此卡塔而言，一年是365天，一天是24小时。
+
+        请注意，空格很重要。
+
+    详细规则
+        
+     -->
+</body>
+
+</html>

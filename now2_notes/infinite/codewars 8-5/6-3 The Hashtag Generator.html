@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //需求分析
+        //传入字符串，转化为驼峰命名法变种：
+        //思路1：split(' ')以空格为分隔符分割字符串获得数组，
+        //将每个单词取出，首字母大写。
+        // S1，获取首字母，大写，然后替换replace。S2，切割字符串，大写，再拼接。
+        //join('')无缝拼接数组，获得字符串
+        //在字符串的口头拼接#
+        //如果字符串长度超过140，返回false。如果字符串为空，返回false;
+
+        //正则表达式？？？
+
+        function generateHashtag(str) {
+            console.log(str);
+            var arr0 = str.split(' ');
+            var letter3 = '';
+            var letter4 = '';
+            var letter5 = '';
+
+            //console.log(arr0);
+            if (str.length > 0) {
+                for (var i = 0; i < arr0.length; i++) {
+                    var letter1 = arr0[i].slice(0, 1).toUpperCase();
+                    //console.log(letter1);
+                    var letter2 = arr0[i].substring(1);
+                    //console.log(letter2);
+                    letter3 = letter1 + letter2;
+                    //console.log(letter3);
+                    letter4 += letter3;
+                    //console.log(letter4);
+                }
+                console.log(letter4.length);
+
+                if (letter4.length == 0) {
+                    return false;
+                } else {
+                    letter5 = '#' + letter4;
+                }
+                if (letter5.length > 140) {
+                    return false;
+                } else {
+                    return letter5;
+                }
+            } else {
+                return false;
+            }
+
+        }
+
+        var str0 = " ".repeat(200);
+        console.log(generateHashtag(str0));
+
+        //参考答案1  正则表达式
+        function generateHashtag(str) {
+            var s = "#" + str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase() }).split(" ").join("");
+            if (str && s.length <= 140) {
+                return s;
+            } return false;
+        }
+        //参考答案2 
+        function generateHashtag(str) {
+            return str.length > 140 || str === '' ? false :
+                '#' + str.split(' ').map(capitalize).join('');
+        }
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+    </script>
+
+</head>
+
+<body>
+    <!-- 
+        The marketing team is spending way too much time typing in hashtags.
+        Let's help them with out own Hashtag Generator!
+        营销团队花费太多时间输入主题标签，让我们用自己的Hashtag Generator帮助他们吧！
+        Here's the deal: 规则如下，值得注意的是，
+        It must start with a hashtag (#).
+        All words must have their first letter capitalized.
+        If the final result is longer than 140 chars it must return false.
+        If the input or the result is an empty string it must return false.
+        #驼峰命名法
+        #开头，首字母大写。如果字符串长度超过140，返回false。如果字符串为空，返回false;
+     -->
+    <!-- 
+        Test.assertEquals(generateHashtag(""), false, "Expected an empty string to return false")
+        (" ".repeat(200)), false, "Still an empty string")
+        ("Do We have A Hashtag"), "#DoWeHaveAHashtag", "Expected a Hashtag (#) at the beginning.")
+        ("Codewars"), "#Codewars", "Should handle a single word.")
+        ("Codewars Is Nice"), "#CodewarsIsNice", "Should remove spaces.")
+        ("Codewars is nice"), "#CodewarsIsNice", "Should capitalize first letters of words.")
+        ("code" + " ".repeat(140) + "wars"), "#CodeWars")
+        ("Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong Cat"), false, "Should return false if the final word is longer than 140 chars.")
+        ("a".repeat(139)), "#A" + "a".repeat(138), "Should work")
+        (generateHashtag("a".repeat(140)), false, "Too long")
+     -->
+</body>
+
+</html>

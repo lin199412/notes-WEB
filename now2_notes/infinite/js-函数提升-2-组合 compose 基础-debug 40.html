@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数组合 compose 测试</title>
+    <script src="./cdn/lodash.min.js"></script>
+</head>
+<body>    
+</body>
+
+<script>
+function compose() {
+    var fns = [].slice.call(arguments)
+    return function (initialArg) {
+        var res = initialArg
+        for (var i = fns.length - 1; i > -1; i--) {
+            res = fns[i](res)
+        }
+        return res
+    }
+}
+
+// -----------
+// debug 函数组合过程中, 可能存在参数类型错误等多种问题, 可以插入一个函数追踪打印错误
+var curry = _.curry;
+
+var trace = curry(function(tag, x){
+  console.log(tag, x);
+  return x;
+});
+
+var map = curry(function(f, ary) {
+  return ary.map(f);
+});
+
+var join = curry(function(link, ary) {
+  return ary.join(link);
+});
+
+var split = curry(function(divide, str) {
+  return str.split(divide);
+})
+
+var toUpper = function(str) { return str.toUpperCase() };
+
+var replace = curry(function(reg, replacement, str) {
+  return str.replace(reg, replacement);
+});
+
+var filter = curry(function(f, ary) {
+  return ary.filter(f);
+});
+
+// step1 函数报错
+// var dasherize = compose(join('-'), toUpper, split(' '), replace(/\s{2,}/ig, ' '));
+// let res = dasherize('The world is a vampire');
+// // -> Uncaught TypeError: str.toUpperCase is not a function
+// console.log('res', res);
+
+// step2 混入追踪函数
+// var dasherize = compose(join('-'), toUpper, trace("after split"), split(' '), replace(/\s{2,}/ig, ' '));
+// var res = dasherize('The world is a vampire'); // -> after split [ 'The', 'world', 'is', 'a', 'vampire' ]
+// console.log('res', res);
+
+// step3 确认错误并修正
+var dasherize = compose(join('-'), map(toUpper), split(' '), replace(/\s{2,}/ig, ' '));
+var res = dasherize('The world is a vampire');
+console.log('res', res);
+
+
+</script>
+
+</html>

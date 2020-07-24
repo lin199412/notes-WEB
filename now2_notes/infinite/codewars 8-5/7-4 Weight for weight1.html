@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //需求分析
+        //给定一个数组arr0，求权重，获得新数组arr1，对arr1进行排序，同时影响arr0的排序
+        //思路1：根据原数组arr0，循环求权重，生成二维数组arr2，用sort()排序，
+        //如果权重相等，再用冒泡排序法排列，取出数值获得数组，将数组拼接成字符串
+        //思路2：数组转json对象？
+
+        function orderWeight(strng) {
+            var sum = 0;
+            var arr0 = [];
+            var arr1 = [];
+            var arr2 = [];
+            var arr3 = [];
+            var strEnd = '';
+            arr0 = strng.split(/\s+/);//分割空格获得数组
+            console.log(arr0);
+
+            for (var i = 0; i < arr0.length; i++) {
+                for (var j = 0; j < arr0[i].length; j++) {
+                    sum += Number(arr0[i].substr(j, 1));
+                }
+                console.log(sum);
+                arr1.push(arr0[i], sum);
+                console.log(arr1);
+                arr2.push(arr1);//获得二维数组
+                arr1 = [];
+                sum = 0;
+            }
+
+            console.log(arr2);
+            arr2.sort(function (a, b) {//根据计算所得权重，给一维数组排序
+                return a[1] - b[1];
+            });
+
+            var str2 = '';
+            //var indexNum = 0;
+            //参考冒泡排序法。先判断数组第二个数是否相等，如果相等，进行冒泡排序，将最大的往后挪动
+            for (var q = 0; q < arr2.length - 1; q++) {//最后一个不用再比较，循环次数减一
+                for (var p = 0; p < arr2.length - 1; p++) {
+                    if (arr2[p][1] == arr2[p + 1][1]) {
+                        if (arr2[p] > arr2[p + 1]) {
+                            str2 = arr2[p];
+                            //indexNum = p;
+                            arr2[p] = arr2[p + 1];
+                            arr2[p + 1] = str2;
+                        }
+                    }
+                }
+            }
+
+            //把数组里的第一个数取出来，拼接成字符串
+            for(var r = 0; r < arr2.length; r++){
+                arr3.push(arr2[r][0]);
+            }
+            strEnd = arr3.join(' ');
+            return strEnd;
+        }
+
+
+        // 试验用字符串
+        var str0 = "56 65 74 100 99 68 86 180 90";
+        var str1 = "103 123 4444 99 2000";
+        var str2 = "2000 10003 1234000 44444444 9999 11 11 22 123";
+        var arr10 = orderWeight(str2);
+        console.log(arr10);
+
+        //正则表达式切割字符串里的空格
+        //let str = "hellow  world!"
+        //console.log(str.trim().split(/\s+/))
+        //console.log(str.trim().split(/\s+/).length)
+    </script>
+</head>
+
+<body>
+    <!-- 
+        给定一个字符串，将字符串里的数据求一次权重，根据权重从小到大排列。
+        如果两个数权重相同，转化为字符串，再比较大小排序。
+        My friend John and I are members of the "Fat to Fit Club (FFC)". 
+        John is worried because each month a list with the weights of members is published 
+        and each month he is the last on the list which means he is the heaviest.
+        I am the one who establishes the list so I told him: "Don't worry any more, 
+        I will modify the order of the list". It was decided to attribute a "weight" to numbers. 
+        The weight of a number will be from now on the sum of its digits.
+
+        For example 99 will have "weight" 18, 100 will have "weight" 1 so in the list 100 will come before 99. 
+        Given a string with the weights of FFC members in normal order can you give this string 
+        ordered by "weights" of these numbers?
+
+        Example:
+        "56 65 74 100 99 68 86 180 90" ordered by numbers weights becomes: "100 180 90 56 65 74 68 86 99"
+
+        When two numbers have the same "weight", let us class them as if they were strings and not numbers: 
+        100 is before 180 because its "weight" (1) is less than the one of 180 (9) 
+        and 180 is before 90 since, having the same "weight" (9), it comes before as a string.
+        All numbers in the list are positive numbers and the list can be empty.
+     -->
+    <!-- 
+        Test.assertEquals(orderWeight("103 123 4444 99 2000"), "2000 103 123 4444 99")
+        Test.assertEquals(orderWeight("2000 10003 1234000 44444444 9999 11 11 22 123"), 
+        "11 11 2000 10003 22 123 1234000 44444444 9999")
+     -->
+</body>
+
+</html>

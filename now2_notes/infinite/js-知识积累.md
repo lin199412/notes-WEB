@@ -1,0 +1,139 @@
+
+
+## JS 对象属性名
+
+```bash
+# develop
+JS对象的属性名支持多种格式：
+字符串，数字，true/false，undefined，Symbol
+当对象作为属性名时，属性名会被统一转化为相同的字符串。
+JS存储时，数字属性名和字符串属性名效果不同，运行时效果相同。
+JS存储时，undefined属性名和字符串属性名效果不同，运行时效果相同。
+```
+
+
+## JS 对象属性名：字符串与数字
+```js
+let a = {},
+    b = '0',
+    c = 0;
+a[b] = '张三';
+a[c] = '李四';
+console.log(a[b]);
+
+## 打印结果为 '李四'
+解析：对象的属性名不能重复，数字属性名和字符串属性名效果相同。
+运行时相同，存储时不同。
+```
+
+## JS 对象属性名：Symbol
+```js
+let a = {},
+    b = Symbol('1'),
+    c = Symbol('1');
+a[b] = '张三';
+a[c] = '李四';
+console.log(a[b]);
+
+## 打印结果为 '张三'
+解析：Symbol创建的是唯一值
+Symbol('1') === Symbol('1') // false
+
+## 拓展：对象与数组的区别
+```
+
+## JS 对象属性名：Symbol
+```js
+let a = {},
+    b = Symbol('1'),
+    c = Symbol('1');
+a[b] = '张三';
+a[c] = '李四';
+console.log(a[b]);
+
+## 打印结果为 '张三'
+解析：Symbol创建的是唯一值
+Symbol('1') === Symbol('1') // false
+
+## 拓展：自己实现symbol
+```
+
+## JS 对象属性名：Object
+```js
+let a = {},
+    b = {
+        m: 1
+    },
+    c = {
+        n: 2
+    };
+a[b] = '张三';
+a[c] = '李四';
+console.log(a[b]);
+
+## 打印结果为 '李四'
+解析：Symbol创建的是唯一值
+Symbol('1') === Symbol('1') // false
+
+## 拓展：Object.prototype.toString()在项目中的应用，和valueOf的区别
+```
+
+## JS 闭包
+```js
+var test = (function(i) {
+    return function () {
+        alert(i *= 2);
+    }
+})(2);
+test(5);
+
+## 弹窗内容为 '4'
+alert 弹出的结果都会被转化为字符串
+
+```
+
+## JS 数据类型
+```js
+var a = ?;
+if (a==1 && a==2 && a==3) {
+    console.log(1);
+}
+
+## 基础知识
+    // ==比较数据类型不一样的时候
+    // 对象==字符串：先将对象.toString()变为字符串
+    // null == undefined 相等，和其他值都不相等
+    // NaN !== NaN
+    // 剩下的都是转换为数字
+    // 例如：数组和数字比较，[10] == 10
+    [10].toString();
+    Number("10");
+    valueOf
+
+## 方案1-1 重写对象的内置函数 toString或者valueOf
+var a = {
+    i: 0,
+    toString() {
+        return ++this.i;
+    }
+    // valueOf() {
+    //     return ++this.i;
+    // }
+}
+## 方案1-2 利用数组的shift方法
+var a = [1, 2, 3]
+a.toSting = a.shift;
+// a.join = a.shift;
+
+## 方案2 ES5数据劫持，ES6 proxy
+var i = 0;
+Object.defineProperty(window, 'a', {
+    get() {
+        return ++i;
+    }
+});
+
+
+## 拓展： toString和valueOf的区别
+
+```

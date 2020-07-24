@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //需求分析
+        //判断每一行
+        //判断每一列
+        //判断每个3x3九宫格
+        //取数，判断
+        //思路1：把取出的数组从小到大排列，和1-9的顺序数组比较。
+        //思路2：把取出的数组和顺序数组比较，==则删除，如果最后数组长度为0，则匹配成功。
+
+        //体会：
+        
+
+        function doneOrNot(board) {
+            console.log(board);
+            var arr0 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            var board1 = [];
+            var arr01 = [];
+            //var board1 = board.concat([]);
+            for (var x = 0; x < board.length; x++) {
+                for (var y = 0; y < board.length; y++) {
+                    arr01.push(board[x][y]);
+                    //console.log(arr01);
+
+                }
+                board1.push(arr01);
+                arr01 = [];
+            }
+            //var board2 = board.slice(0);
+            //var board3 = board.slice(0);
+            console.log(board1);
+            //console.log(board2);
+            //console.log(board3);
+            //判断每一行
+            for (var i = 0; i < 9; i++) {
+                var arr1 = board1[i];
+                console.log(arr1);
+                arr1.sort(function (a, b) {
+                    return a - b;
+                });
+                arr1.sort();
+                console.log(arr1);
+                for (var j = 0; j < 9; j++) {
+                    if (arr1[j] != arr0[j]) {
+                        return "Try again!";
+                    }
+                }
+            }
+            console.log(111);
+            //判断每一列
+            for (var i = 0; i < 9; i++) {
+                var arr2 = [];
+                for (var j = 0; j < 9; j++) {
+                    arr2.push(board[j][i]);
+                }
+                console.log(arr2);
+                arr2.sort(function (a, b) {
+                    return a - b;
+                });
+                console.log(arr2);
+                for (var k = 0; k < 9; k++) {
+                    if (arr2[k] != arr0[k]) {
+                        return "Try again!";
+                    }
+                }
+            }
+            console.log(board);
+            console.log(222);
+            //判断九宫格
+            //9x9拆成9个3x3的格子，不是任意拆分
+            var arr3 = [];
+            for (var h = 0; h < 9; h += 3) {
+                for (var l = 0; l < 9; l += 3) {
+                    arr3.push(board[h][0 + l], board[h][1 + l], board[h][2 + l]);
+                    arr3.push(board[h + 1][0 + l], board[h + 1][1 + l], board[h + 1][2 + l]);
+                    arr3.push(board[h + 2][0 + l], board[h + 2][1 + l], board[h + 2][2 + l]);
+                    console.log(arr3);
+
+                    arr3.sort(function (a, b) {
+                        return a - b;
+                    });
+                    console.log(arr3);
+                    for (var n = 0; n < 9; n++) {
+                        if (arr3[n] != arr0[n]) {
+                            return "Try again!";
+                        }
+                    }
+                    arr3 = [];
+                }
+            }
+            return "Finished!";
+
+        }
+
+
+        var arr11 = [
+            [5, 3, 4, 6, 7, 8, 9, 1, 2],
+            [6, 7, 2, 1, 9, 5, 3, 4, 8],
+            [1, 9, 8, 3, 4, 2, 5, 6, 7],
+            [8, 5, 9, 7, 6, 1, 4, 2, 3],
+            [4, 2, 6, 8, 5, 3, 7, 9, 1],
+            [7, 1, 3, 9, 2, 4, 8, 5, 6],
+            [9, 6, 1, 5, 3, 7, 2, 8, 4],
+            [2, 8, 7, 4, 1, 9, 6, 3, 5],
+            [3, 4, 5, 2, 8, 6, 1, 7, 9]];
+        var arr12 = [
+            [5, 3, 4, 6, 7, 8, 9, 1, 2],
+            [6, 7, 2, 1, 9, 0, 3, 4, 9],
+            [1, 0, 0, 3, 4, 2, 5, 6, 0],
+            [8, 5, 9, 7, 6, 1, 0, 2, 0],
+            [4, 2, 6, 8, 5, 3, 7, 9, 1],
+            [7, 1, 3, 9, 2, 4, 8, 5, 6],
+            [9, 0, 1, 5, 3, 7, 2, 1, 4],
+            [2, 8, 7, 4, 1, 9, 6, 3, 5],
+            [3, 0, 0, 4, 8, 1, 1, 7, 9]];
+        var arr13 = [
+            [1, 3, 2, 5, 7, 9, 4, 6, 8],
+            [4, 9, 8, 2, 6, 1, 3, 7, 5],
+            [7, 5, 6, 3, 8, 4, 2, 1, 9],
+            [6, 4, 3, 1, 5, 8, 7, 9, 2],
+            [5, 2, 1, 7, 9, 3, 8, 4, 6],
+            [9, 8, 7, 4, 2, 6, 5, 3, 1],
+            [2, 1, 4, 9, 3, 5, 6, 8, 7],
+            [3, 6, 5, 8, 1, 7, 9, 2, 4],
+            [8, 7, 9, 6, 4, 2, 1, 3, 5]];
+        var arr14 =
+            [[1, 3, 2, 5, 7, 9, 4, 6, 8],
+            [4, 9, 8, 2, 6, 1, 3, 7, 5],
+            [7, 5, 6, 3, 8, 4, 2, 1, 9],
+            [6, 4, 3, 1, 5, 8, 7, 9, 2],
+            [5, 2, 1, 7, 9, 3, 8, 4, 6],
+            [9, 8, 7, 4, 2, 6, 5, 3, 1],
+            [2, 1, 4, 9, 3, 5, 6, 8, 7],
+            [3, 6, 5, 8, 1, 7, 9, 2, 4],
+            [8, 7, 9, 6, 4, 2, 1, 3, 5]];
+
+        console.log(doneOrNot(arr13));
+
+        //第三种验证，其他方案
+        var arrr = [];
+        for (var c = 0; c < 3; c++) {
+            for (var l = 0; l < 9; l++) {
+                if (l % 3 == 0) {
+                    var brr = [];
+                    arrr.push(brr);
+                }
+                brr.push(...board[l].slice((c * 3), (c + 1) * 3))
+            }
+        }
+        //展开语法(Spread syntax), 可以在函数调用/数组构造时, 将数组表达式或者string在语法层面展开；
+        //还可以在构造字面量对象时, 将对象表达式按key-value的方式展开。
+        //上面的例子中，...用于展开数组，合并两个一维数组，避免生成二维数组
+    </script>
+</head>
+
+<body>
+    <!-- 
+        验证数独是否完成
+        数独：9x9的数字列表。每一行都含有1-9，每一列都含有1-9，每个3x3的格子都含有1-9
+        给定一个二维数组，二维数组包含九个一维数组，一个一维数组包含九个数字。
+        验证通过返回"Finished!"  验证不通过返回"Try again!"
+     -->
+    <!-- 
+         Test.assertEquals(doneOrNot([
+                         [5, 3, 4, 6, 7, 8, 9, 1, 2], 
+                         [6, 7, 2, 1, 9, 5, 3, 4, 8],
+                         [1, 9, 8, 3, 4, 2, 5, 6, 7],
+                         [8, 5, 9, 7, 6, 1, 4, 2, 3],
+                         [4, 2, 6, 8, 5, 3, 7, 9, 1],
+                         [7, 1, 3, 9, 2, 4, 8, 5, 6],
+                         [9, 6, 1, 5, 3, 7, 2, 8, 4],
+                         [2, 8, 7, 4, 1, 9, 6, 3, 5],
+                         [3, 4, 5, 2, 8, 6, 1, 7, 9]]), "Finished!");
+                                
+        Test.assertEquals(doneOrNot([
+                         [5, 3, 4, 6, 7, 8, 9, 1, 2], 
+                         [6, 7, 2, 1, 9, 0, 3, 4, 9],
+                         [1, 0, 0, 3, 4, 2, 5, 6, 0],
+                         [8, 5, 9, 7, 6, 1, 0, 2, 0],
+                         [4, 2, 6, 8, 5, 3, 7, 9, 1],
+                         [7, 1, 3, 9, 2, 4, 8, 5, 6],
+                         [9, 0, 1, 5, 3, 7, 2, 1, 4],
+                         [2, 8, 7, 4, 1, 9, 6, 3, 5],
+                         [3, 0, 0, 4, 8, 1, 1, 7, 9]]), "Try again!");
+      -->
+</body>
+
+</html>

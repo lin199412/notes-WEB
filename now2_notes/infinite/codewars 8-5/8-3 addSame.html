@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 思路1：
+        function GetSum(a, b) {
+            var res = 0;
+            var j = 0;
+            if (a > b) {
+                for (var i = 0; i < (a - b + 1); i++) {//先计算循环次数
+                    j = b + i;//再存取数据
+                    res += j;
+                    console.log(res);
+                }
+            } else if (a == b) {
+                res = a;
+                console.log(res);
+            } else if (a < b) {
+                for (var i = 0; i < (b - a + 1); i++) {
+                    j = a + i;
+                    res += j;
+                    console.log(res);
+                }
+            }
+            return res;
+        }
+
+        var res1 = GetSum(-5, 1);
+        console.log(res1);
+
+        // 参考答案1
+        // function GetSum(a, b) {
+        //     if (a == b) return a;
+        //     else if (a < b) return a + GetSum(a + 1, b);
+        //     else return a + GetSum(a - 1, b);
+        // }
+        //参考答案2
+        // function GetSum(a, b) {
+        //     tmp = 0;
+
+        //     if (a < b)
+        //         while (a <= b) tmp += a++;
+        //     else
+        //         while (a >= b) tmp += a--;
+
+        //     return tmp;
+        // }
+
+    </script>
+
+</head>
+
+<body>
+    <!-- 
+        鉴于两个整数a和b，可以是正数或负数，找到所有他们包含的数并求和。
+        如果两个数字相等则返回a或b。
+        Given two integers a and b, which can be positive or negative, 
+        find the sum of all the numbers between including them too and return it. 
+        If the two numbers are equal return a or b.
+        
+        Note: a and b are not ordered!
+        GetSum(1, 0) == 1   // 1 + 0 = 1
+        GetSum(1, 2) == 3   // 1 + 2 = 3
+        GetSum(0, 1) == 1   // 0 + 1 = 1
+        GetSum(1, 1) == 1   // 1 Since both are same
+        GetSum(-1, 0) == -1 // -1 + 0 = -1
+        GetSum(-1, 2) == 2  // -1 + 0 + 1 + 2 = 2
+     -->
+
+
+</body>
+
+</html>

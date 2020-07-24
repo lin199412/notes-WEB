@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js 链式写法</title>
+</head>
+<body>    
+</body>
+
+<script>
+/*
+    链式写法的应用:
+    1. 连续调用原生数据类型的方法, 把原数据快速转化为目标数据
+    可以根据需求新增或者修改原型链上的函数
+    2. 为了满足特定需求, 自定义对象Object或者类Class, 连续调用属性值为函数的属性
+*/
+
+    let Obj = {
+        num: 1,
+        fn_a: function(){
+            this.num++;
+            return this;
+        },
+        fn_b: function(pram){
+        	this.num=this.num*pram;
+        	return this;
+        },
+    }
+    Obj.fn_a().fn_b(5);
+    console.log(Obj.num);//输出10
+
+
+    
+</script>
+
+
+</html>

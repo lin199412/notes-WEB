@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="handleClick()">加一</button>
+</body>
+
+<script>
+let num = 0;
+let type = 'A';
+
+function handleClick() {
+    console.log('初始 - type', type);
+    num ++;
+
+    if (num === 0) {
+        type = 'A';
+    } else if (num === 1) {
+        type = 'B';
+    } else if (num === 2) {
+        type = 'C';
+    } else {
+        type = 'D';
+    }
+    console.log('if - type', type);
+
+    switch(num) {
+        case 0:
+            type = 'A';
+            break;
+        case 1:
+            type = 'B';
+            break;
+        case 2:
+            type = 'C';
+            break;
+        default:
+            type = 'D';
+            break;
+    }
+    console.log('switch - type', type);
+
+    type = num === 0 ? 'A' : num === 1 ? 'B' : num === 2 ? 'C' : 'D';
+    console.log('three - type', type);
+
+}
+
+</script>
+</html>

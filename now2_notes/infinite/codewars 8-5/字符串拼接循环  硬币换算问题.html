@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>组合</title>
+</head>
+
+<body>
+    <script>
+    // let arr = [1,2,3,4,5];
+    var ci = 0;
+    var len = 3;
+    // let brr = [];
+    function combination(n, arr) {
+        // 调用函数
+        var len = 5-1;
+        var brr = [];
+        var str = '';
+        for (var n = 0; n < len; n++) {//用拼接字符串的方法控制循环次数
+            str += `for(var i${n} = 0; i${n}<arr.length; i${n}++){`;
+            str += sum(n);
+        }
+        for (var m = 0; m < len; m++) {
+            str += '}';
+        }
+        function sum(n) {
+            var str = `brr.push([arr[i0]`;
+            for (var k = 1; k <= n; k++) {
+                str += `,arr[i${k}]`;
+            }
+            if (n <= 2-1) {
+            	return '';
+            } else {
+                return str + ']);';
+            }
+        }
+        console.log(str);
+        eval(str);
+        console.log(brr);
+    }
+
+
+    // 0 + 5 = 5  x
+    // 5 + 2 = 7  x
+
+    var r = combination(10, [5, 2, 3, 1,4]);
+
+    console.log(r);
+    </script>
+</body>
+
+</html>

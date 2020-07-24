@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //思路1：拆分字符串获得数组split('')
+        //排列组合获得所有的排列方式
+        //去重
+        //思路2：
+        function permutations(string) {
+            arr0 = string.split('');
+            console.log(arr0);
+            var count = arr0.length;
+            console.log(count);
+            var res = '';
+            var end = [];
+            function add() {
+                for(var i = 0; i < arr0.length; i++){
+                    count--;
+                    console.log(count);
+                    for(var j = 0; j < arr0.length; j++){
+                        res += arr0[j];
+                        console.log(res);
+                    }
+                    end.push(res);
+                    res = '';
+                    console.log(end);
+                    if(count > 0) {
+                        add();
+                    }else if(count == 0){
+                        return end;
+                    }
+                }
+            }
+            add();
+        }
+
+        var str0 = 'a';
+        var str1 = 'ab';
+        var str2 = 'aabb';
+        console.log(permutations(str2));
+    </script>
+</head>
+<body>
+    <!-- 
+        创建输入字符串的所有排列并删除重复项（如果存在）。
+     -->
+    <!-- 
+        permutations('a'); // ['a']
+        permutations('ab'); // ['ab', 'ba']
+        permutations('aabb'); // ['aabb', 'abab', 'abba', 'baab', 'baba', 'bbaa']
+     -->
+</body>
+</html>

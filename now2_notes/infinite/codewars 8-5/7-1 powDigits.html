@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //思路1：
+        //拆数字：将数字转化为字符串，for循环截取数字，幂运算加等
+        //求和之和
+        //for循环，n幂运算，当结果大于第一个和，循环停止。符合条件则输出，不符合则结束循环
+
+        function digPow(n, p) {
+            var num = 0;
+            var res1 = 0;
+            var res2 = 0;
+            n = String(n);
+            for (var i = 0; i < n.length; i++) {//计算等式的左边
+                num = n.substr(i, 1);
+                num = Number(num);
+                res1 += Math.pow(num, p + i);
+            }
+
+            //笨方法：尋找一個數相乘是否相等
+            //好方法：判斷是否整除就可以了，整除輸出結果
+            for (var j = 0; j <= Math.ceil(res1 / n); j++) {//计算等式的右边，并判断等式是否成立
+                n = Number(n);
+                res2 = n * j;
+                if (res2 == res1) {
+                    return j;
+                }
+            }
+            return -1;
+        }
+
+        var sum = digPow(46288, 3);
+        console.log(sum);
+
+
+        //参考答案1
+        function digPow(n, p) {
+            var ans = ('' + n).split('')
+                .map(function (d, i) { return Math.pow(+d, i + p) })
+                .reduce(function (s, v) { return s + v }) / n
+            return ans % 1 ? -1 : ans
+        }
+        //參考答案2
+        function digPow(n, p) {
+            var x = String(n).split("").reduce((s, d, i) => s + Math.pow(d, p + i), 0)
+            return x % n ? -1 : x / n
+        }
+    </script>
+</head>
+
+<body>
+    <!-- [46288, 5]
+        Some numbers have funny properties. For example:
+        89 --- 8¹ + 9² = 89 * 1
+        695 --- 6² + 9³ + 5⁴= 1390 = 695 * 2
+        46288 --- 4³ + 6⁴+ 2⁵ + 8⁶ + 8⁷ = 2360688 = 46288 * 51
+        Is there an integer k such as : (a ^ p + b ^ (p+1) + c ^(p+2) + d ^ (p+3) + ...) = n * k
+        给定数字n和数字p，验证是否存在数字k满足等式，如果存在，则输出数字k，如果不存在，则输出-1
+     -->
+    <!-- 
+        digPow(89, 1) should return 1 since 8¹ + 9² = 89 = 89 * 1
+        digPow(92, 1) should return -1 since there is no k such as 9¹ + 2² equals 92 * k
+        digPow(695, 2) should return 2 since 6² + 9³ + 5⁴= 1390 = 695 * 2
+        digPow(46288, 3) should return 51 since 4³ + 6⁴+ 2⁵ + 8⁶ + 8⁷ = 2360688 = 46288 * 51
+     -->
+</body>
+
+</html>

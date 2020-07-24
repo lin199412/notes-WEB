@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var arr0 = [0, 1, 2, 3];
+        var arr1 = [];
+        var res = 0;
+        var max = 6;
+        var count = 0;
+        for (var i = 0; i < max; i++) {
+            arr1.push(arr0);
+        }
+        console.log(arr1);
+        //尝试用二维数组，但是普通的遍历满足不了要求
+        //
+
+
+        // var i = 0;
+        // var j = 0;
+        // for(var m = 0; m < 4**6; m++){
+        //     res += arr[i][j];
+        //     i++;
+        //     if(count == 6) {
+        //         res = 0;
+        //         i = 0;
+        //     }
+        //     count ++;
+        // }
+
+        function addNum () {
+            for(var i = 0; i < 4; i++) {
+                res += arr0[i];
+
+            }
+        }
+
+        for(var m = 0; m < 6; m++) {
+            for(var n = 0; n < 4; n++) {
+                res += arr[m][n];
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

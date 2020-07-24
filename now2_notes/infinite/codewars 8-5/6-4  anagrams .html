@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //需求分析：根据给定词，判断给定数组中是否存在给定词的字谜
+        //拆分给定词，获得一个数组1，split('');
+        //遍历数组，判断元素的长度是否等于给定词。
+        //将元素拆分为数组2，
+        //两个数组逐个对比，遇到全等的字母则删除数组2里的字母，splice(index,number)
+        //如果最后数组2长度为0，则将数组2对应的元素拼接到空数组，输出。
+        function anagrams(word, words) {
+            var res = [];
+            var arr0 = word.split('');
+            console.log(arr0);
+            for (var i = 0; i < words.length; i++) {
+                if (word.length == words[i].length) {//取出与初始字符长度相同的字符
+                    var arr1 = words[i].split('');
+                    console.log(arr1);
+                    for (var j = 0; j < arr0.length; j++) {//判断两个字符的内容是否相同
+                        for (var k = 0; k < arr0.length; k++) {
+                            if (arr0[j] == arr1[k]) {
+                                arr1.splice(k, 1);
+                                console.log(arr1);
+                            }
+                        }
+                    }
+                    if (arr1.length == 0) {
+                        res.push(words[i]);
+                        console.log(res);
+                    }
+                }
+            }
+            return res;
+        }
+
+        var word1 = 'abba';
+        var words1 = ['aabb', 'abcd', 'bbaa', 'dada'];
+        console.log(anagrams(word1, words1));
+
+        //参考答案1
+        String.prototype.sort = function () {
+            return this.split("").sort().join("");
+        };
+
+        function anagrams(word, words) {
+            return words.filter(function (x) {
+                return x.sort() === word.sort();
+            });
+        }
+        //参考答案2
+        function anagrams(word, words) {
+            return words.filter(function (e) {
+                return e.split('').sort().join('') === word.split('').sort().join('');
+            })
+        }
+    </script>
+
+</head>
+
+<body>
+    <!-- 
+        What is an anagram? Well, two words are anagrams of each other if they both contain the same letters. 
+        For example:
+        'abba' & 'baab' == true
+        'abba' & 'bbaa' == true
+        'abba' & 'abbba' == false
+        'abba' & 'abca' == false
+        Write a function that will find all the anagrams of a word from a list. 
+        You will be given two inputs a word and an array with words. 
+        You should return an array of all the anagrams or an empty array if there are none. 
+        找字谜，由相同字母颠倒顺序组成的单词。根据给定词，判断给定数组中是否存在给定词的字谜
+        For example:
+        anagrams('abba', ['aabb', 'abcd', 'bbaa', 'dada']) => ['aabb', 'bbaa']
+        anagrams('racer', ['crazer', 'carer', 'racar', 'caers', 'racer']) => ['carer', 'racer']
+        anagrams('laser', ['lazing', 'lazy',  'lacer']) => []
+     -->
+</body>
+
+</html>

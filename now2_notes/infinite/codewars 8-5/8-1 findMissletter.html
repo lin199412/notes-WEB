@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //目标：对比输出的数组，按顺序找到缺失的那一个
+        //新建数组，包含字母表
+        //取子数组的第一个与母数组进行匹配，找到相应的下标
+        //根据下标依次对比，如果不等于，则输出该字母
+        function findMissingLetter(array) {
+            var array0 = ['a', 'b','c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+            //生成数组最简单的方法
+            for (var i = 0; i < array0.length; i++) {//遍历数组array0(字母表)
+                if (array0[i] == array[0]) {//在字母表中找到，与数组array0里的第一个字母
+                    for (var j = 0; j < array.length; j++) {//逐个判断后面的字母是否与字母表对应
+                        if (array0[i+j] != array[j]) {//如果不对应
+                            return array0[i + j];//返回这个值
+                        }
+                    }
+                }
+            }
+        }
+
+        
+        var array1 = ['d', 'e','f','h'];//少了'g'
+        var array2 = ['O','P','Q','R','T'];//少了"S"
+        var missingLetter = findMissingLetter(array2);
+        console.log(missingLetter);
+
+        //数组里的字母要用单引号或者双引号包裹
+
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

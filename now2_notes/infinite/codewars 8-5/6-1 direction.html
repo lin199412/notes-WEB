@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function dirReduc(arr) {
+            //需求分析：给定一个数组，两两消去相反的方向
+            //判断结构：当前字符串与下一个字符串做对比，
+            //执行：两两消去。根据下标，删去数组里的两个元素
+            //循环结构：两层for循环？ 删去元素之后，数组长度发生改变，要动态改变循环次数？
+            console.log(arr);
+            var count = arr.length - 1;//循环次数，动态改变
+            console.log(count);
+            for (var i = 0; i < count; i++) {
+                console.log(i);
+                if (arr[i] == "EAST" && arr[i + 1] == "WEST"
+                    || arr[i] == "WEST" && arr[i + 1] == "EAST"
+                    || arr[i] == "NORTH" && arr[i + 1] == "SOUTH"
+                    || arr[i] == "SOUTH" && arr[i + 1] == "NORTH") {
+                    arr.splice(i, 2);
+                    console.log(arr);
+                    count -= 2;
+                    console.log(count);
+                    i = -1;//注意：最外层的for循环会导致i+1，进而导致从第二个数开始验证
+                }
+            }
+            return arr;
+        }
+
+        var arr0 = ["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"];
+        var arr1 = ["NORTH", "WEST", "SOUTH", "EAST"];
+        var arr2 = ["NORTH", "SOUTH", "EAST", "WEST", "EAST", "WEST"];
+        console.log(dirReduc(arr2));
+
+        //参考答案1
+        function dirReduc(plan) {
+            var opposite = {
+                'NORTH': 'SOUTH', 'EAST': 'WEST', 'SOUTH': 'NORTH', 'WEST': 'EAST'
+            };
+            return plan.reduce(function (dirs, dir) {
+                if (dirs[dirs.length - 1] === opposite[dir])
+                    dirs.pop();
+                else
+                    dirs.push(dir);
+                return dirs;
+            }, []);
+        }
+        //参考答案2：正则表达式？
+        function dirReduc(arr) {
+            var str = arr.join(''), pattern = /NORTHSOUTH|EASTWEST|SOUTHNORTH|WESTEAST/;
+            while (pattern.test(str)) str = str.replace(pattern, '');
+            return str.match(/(NORTH|SOUTH|EAST|WEST)/g) || [];
+        }
+    </script>
+
+
+</head>
+
+<body>
+    <!-- 
+        穿过古老的狂野西部
+        一个男人被指示从一个点到另一个点。方向是“北”，“南”，“西”，“东”。
+        显然，“NORTH”和“SOUTH”相反，“WEST”和“EAST”也是相反的。
+        走向一个方向并向相反的方向回来是一种不必要的努力。
+        由于这是狂野的西部，天气恶劣，水量不多，为自己节省一些能量很重要，否则你可能会因为口渴而死！
+        试问：如何以聪明的方式越过沙漠。
+     -->
+    <!-- 
+        Test.assertSimilar(dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]), ["WEST"])
+        Test.assertSimilar(dirReduc(["NORTH", "WEST", "SOUTH", "EAST"]), ["NORTH", "WEST", "SOUTH", "EAST"])
+        Test.assertSimilar(dirReduc(["NORTH", "SOUTH", "EAST", "WEST", "EAST", "WEST"]), [])
+     -->
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //需求分析
+        //形参1：总金钱。 形参2：硬币的面额。 推算所有的、不重复的硬币组合方案。
+        //思路1：for循环推算所有方案，去重。 
+        //临界值判断：总金额除以最小的硬币向上取整，总金额除以最大的硬币向上取整。列出所有的组合
+        //思路2：
+        var countChange = function(money, coins) {
+            // var count = 0;
+            // var max = Math.max.apply(null, coins);
+            // var min = Math.min.apply(null, coins);
+            // console.log(max,min);
+            
+        }
+        var money1 = 4;
+        var coins1 = [1,2];
+        console.log(countChange(money1,coins1));
+
+    </script>
+</head>
+
+<body>
+
+    <!-- 
+        编写一个函数，根据一系列硬币面额，计算您可以通过多少种不同的方式进行金额变化。
+        例如，如果您有面额为1和2的硬币，则有3种方法可以为4提供更改：1+1+1+1, 1+1+2, 2+2.
+        硬币的顺序无关紧要：
+        1+1+2 == 2+1+1
+        Also, assume that you have an infinite amount of coins.
+        Your function should take an amount to change and an array of unique denominations for the coins:
+        countChange(4, [1,2]) // => 3
+        countChange(10, [5,2,3]) // => 4
+        countChange(11, [5,7]) //  => 0
+     -->
+</body>
+</html>

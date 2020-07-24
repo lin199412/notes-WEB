@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue2双向数据绑定</title>
+</head>
+<body>
+    书单: <span id="spanName"></span>
+    <br>
+    <input type="text" id="inputName">
+</body>
+
+<script>
+    let obj = { name: '' };
+    let newObj = { ...obj };
+    Object.defineProperty(obj, 'name', {
+        get() {
+            return newObj.name;
+        },
+        set(val) {
+            console.log('val', val);
+            newObj.name = val;
+            observe();
+        }
+    });
+    let inputDom = document.getElementById('inputName');
+
+    function observe() {
+        let nameDom = document.getElementById('spanName');
+        nameDom.innerHTML = newObj.name;
+        inputDom.value = newObj.name;
+    }
+    inputDom.oninput = function () {
+        console.log(this.value);
+        obj.name = this.value;
+    }
+
+    setTimeout(() => {
+        obj.name = '倒计时1';
+    }, 1000);
+</script>
+
+</html>

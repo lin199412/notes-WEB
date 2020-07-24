@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //思路1：划分秒数的范围，达到某个值需要显示分钟小时
+        //思路2：除法和取余结合，判断分钟小时
+        //个位数补零，数字转化为字符串，判断长度，
+        //把获得的数据直接拼接，还是存入数组？
+        //如果超过最大时间则显示最大时间
+
+        function humanReadable(seconds) {
+            var hour = parseInt(seconds / 60 / 60);
+            var min = parseInt(seconds / 60) % 60;
+            var sec = seconds % 60;
+            var res = '';
+            function timeTo(time) {
+                if (time < 10) {
+                    time = String(time);
+                    time = '0' + time + ":";
+                    console.log(time);
+                } else if (time >= 10 && time <= 99) {//判断多余，分钟不会出现大于60的数，可优化
+                    time = String(time);
+                    time = time + ":";
+                    console.log(time);
+                } else if (time > 99) {
+                    time = 99;
+                    time = String(time);
+                    time = time + ":";
+                    console.log(time);
+                }
+                return time;
+            }
+            // res = res + timeTo(hour) + timeTo(min) + timeTo(sec);
+            // console.log(res);
+            // var res0 = res.slice(0,-1);
+            // return res0;
+            res = (res + timeTo(hour) + timeTo(min) + timeTo(sec)).slice(0, -1);
+            return res;
+        }
+
+        var num = humanReadable(359999);
+        console.log(num);
+
+        //参考答案1
+        function humanReadable(seconds) {
+            var pad = function (x) { return (x < 10) ? "0" + x : x; }
+            return pad(parseInt(seconds / (60 * 60))) + ":" +
+                pad(parseInt(seconds / 60 % 60)) + ":" +
+                pad(seconds % 60)
+        }
+        //参考答案2
+        function humanReadable(seconds) {
+            var hours = parseInt(seconds / 3600);
+            var minutes = parseInt(seconds / 60) % 60;
+            var seconds = seconds % 60;
+
+            var pad = function (val) {
+                return val < 10 ? "0" + val : val;
+            }
+
+            return pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
+        }
+
+    </script>
+</head>
+
+<body>
+    <!-- 
+        编写一个函数，它以非负整数（秒）作为输入，并以人类可读的格式返回时间（HH:MM:SS）
+
+        HH =小时，填充到2位数，范围：00 - 99
+        MM =分钟，填充到2位数，范围：00 - 59
+        SS =秒，填充到2位数，范围：00 - 59
+        最长时间永远不会超过359999（99:59:59）
+     -->
+    <!-- 
+        Test.assertEquals(humanReadable(0), '00:00:00', 'humanReadable(0)');
+        Test.assertEquals(humanReadable(5), '00:00:05', 'humanReadable(5)');
+        Test.assertEquals(humanReadable(60), '00:01:00', 'humanReadable(60)');
+        Test.assertEquals(humanReadable(86399), '23:59:59', 'humanReadable(86399)');
+        Test.assertEquals(humanReadable(359999), '99:59:59', 'humanReadable(359999)');
+      -->
+</body>
+
+</html>

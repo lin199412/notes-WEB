@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //需求分析
+        //函数1：计算斐波那契数
+        //函数2：判断斐波数乘积
+        //判断是否存在两个相邻的斐波数乘积，等于给定值
+        //如果不存在，找到大于给定值的斐波数乘积
+        //循环终止条件，斐波数乘积大于给定值，
+        //设定循环的次数。
+        function productFib(prod) {
+            function fibo(num) {
+                if (num == 1) {
+                    return 0;
+                } else if (num == 2) {
+                    return 1;
+                } else if (num > 2) {
+                    return fibo(num - 1) + fibo(num - 2);
+                }
+            }
+            for (var i = 1; i < 100; i++) {
+                var res = fibo(i) * fibo(i + 1);
+                var arr = [];
+                if (res == prod) {
+                    return [fibo(i), fibo(i + 1), true];
+                } else if (res > prod) {
+                    return [fibo(i), fibo(i + 1), false];
+                }
+            }
+        }
+
+        var arr0 = productFib(5895);
+        console.log(arr0);
+
+
+        //参考答案1
+        function productFib(prod) {
+            var n = 0;
+            var nPlus = 1;
+            while (n * nPlus < prod) {
+                nPlus = n + nPlus;
+                n = nPlus - n;
+            }
+            return [n, nPlus, n * nPlus === prod];
+        }
+        //参考答案2
+        function productFib(prod) {
+            let [a, b] = [0, 1];
+            while (a * b < prod) [a, b] = [b, a + b];
+            return [a, b, a * b === prod];
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- 
+        //斐波那契数的定义
+        The Fibonacci numbers are the numbers in the following integer sequence (Fn):
+        0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, ...
+        such as
+        F(n) = F(n-1) + F(n-2) with F(0) = 0 and F(1) = 1.
+        //给定一个数字，判断这个数是否为两个相邻的斐波那契数的乘积，
+        //如果是，返回一个数组[21, 34, true]。返回斐波那契数乘积
+        //如果不是，返回一个数组[34, 55, false]。返回大于给定值的、最小的斐波那契数乘积
+
+        Given a number, say prod (for product), we search two Fibonacci numbers F(n) and F(n+1) verifying
+        F(n) * F(n+1) = prod.
+        Your function productFib takes an integer (prod) and returns an array:
+        [F(n), F(n+1), true] or {F(n), F(n+1), 1} or (F(n), F(n+1), True)
+        depending on the language if F(n) * F(n+1) = prod.
+        If you don't find two consecutive F(m) verifying F(m) * F(m+1) = prodyou will return
+        [F(m), F(m+1), false] or {F(n), F(n+1), 0} or (F(n), F(n+1), False)
+        F(m) being the smallest one such as F(m) * F(m+1) > prod.
+
+        Examples
+        productFib(714) # should return [21, 34, true], 
+                # since F(8) = 21, F(9) = 34 and 714 = 21 * 34
+
+        productFib(800) # should return [34, 55, false], 
+                # since F(8) = 21, F(9) = 34, F(10) = 55 and 21 * 34 < 800 < 34 * 55
+        Notes: Not useful here but we can tell how to choose the number n up to which to go: 
+        we can use the "golden ratio" phi which is (1 + sqrt(5))/2 knowing that F(n) is asymptotic to: phi^n / sqrt(5).
+         That gives a possible upper bound to n.
+     -->
+    <!-- 
+        Test.assertSimilar(productFib(4895), [55, 89, true])
+        Test.assertSimilar(productFib(5895), [89, 144, false])
+        Test.assertSimilar(productFib(74049690), [6765, 10946, true])
+        Test.assertSimilar(productFib(84049690), [10946, 17711, false])
+        Test.assertSimilar(productFib(193864606), [10946, 17711, true])
+        Test.assertSimilar(productFib(447577), [610, 987, false])
+        Test.assertSimilar(productFib(602070), [610, 987, true])
+     -->
+</body>
+
+</html>

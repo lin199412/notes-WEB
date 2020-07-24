@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //需求分析：斐波那契数列求和
+
+        function perimeter(n) {//定义两个初始值为1的变量，叠加。不需要使用回调函数
+            var a = 1;
+            var b = 1;
+            var index = 0;
+            var res = 1;
+            for(var i = 0; i < n ; i++){
+                res = res + b;
+                console.log(res);
+                index = b;
+                b = a + b;
+                a = index;
+                console.log(a,b);
+            }
+            res *= 4;
+            return res;
+        }
+
+        var n1 = 5;
+        var n2 = 7;
+        var n3 = 20;
+        var n4 = 30;
+        console.log(perimeter(n3));
+
+
+        function perimeter01(n) {//使用回调函数，虽然可以计算结果，但是效率不高，被系统卡住
+            var num = n + 1;
+            var res = 0;
+            for (var i = 0; i < num; i++) {
+                function fibo(num) {
+                    if (num < 2) {
+                        return 1;
+                    } else {
+                        return fibo(num - 1) + fibo(num - 2);
+                    }
+                }
+                res += fibo(i);
+            }
+            res *= 4;
+            return res;
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <!-- 
+        The drawing shows 6 squares the sides of which have a length of 1, 1, 2, 3, 5, 8. 
+        It's easy to see that the sum of the perimeters of these squares is :
+         4 * (1 + 1 + 2 + 3 + 5 + 8) = 4 * 20 = 80
+
+        Could you give the sum of the perimeters of all the squares in a rectangle 
+        when there are n + 1 squares disposed in the same manner as in the drawing:
+
+        The function perimeter has for parameter n where n + 1 is the number of squares
+         (they are numbered from 0 to n) and returns the total perimeter of all the squares.
+
+        perimeter(5)  should return 80
+        perimeter(7)  should return 216
+     -->
+    <!-- 
+        Test.assertEquals(perimeter(5), 80)
+        Test.assertEquals(perimeter(7), 216)
+        Test.assertEquals(perimeter(20), 114624)
+        Test.assertEquals(perimeter(30), 14098308)
+     -->
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js 柯里化 curry</title>
+    <script src="./cdn/lodash.min.js"></script>
+</head>
+<body>    
+</body>
+
+<script>
+
+var curry = _.curry;
+
+var trace = curry(function(tag, x){
+  console.log(tag, x);
+  return x;
+});
+
+var map = curry(function(f, ary) {
+  return ary.map(f);
+});
+
+var join = curry(function(link, ary) {
+  return ary.join(link);
+});
+
+var split = curry(function(divide, str) {
+  return str.split(divide);
+})
+
+// var toUpper = function(str) { return str.toUpperCase() };
+
+var replace = curry(function(reg, replacement, str) {
+  return str.replace(reg, replacement);
+});
+
+var filter = curry(function(f, ary) {
+  return ary.filter(f);
+});
+    
+</script>
+
+
+</html>

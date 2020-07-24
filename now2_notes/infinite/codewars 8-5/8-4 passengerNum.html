@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //二维数组
+        //数组第一个数为上车人数，第二个数为下车人数
+        window.onload = function() {
+            var number = function(busStops){
+                var res = 0;
+                for (var i = 0; i < busStops.length; i++){
+                    res += busStops[i][0];
+                    res -= busStops[i][1];
+                }
+                return res;
+            }
+            //busStops应该是表述上下车人数的数组
+        }
+    </script>
+
+</head>
+
+<body>
+    <!-- 
+        公共汽车上的人数
+        这个城市有一辆公共汽车，每个公共汽车站都有一些人接送。
+
+        您将获得整数数组（或元组）的列表（或数组）。每个整数数组都有两个项目，
+        表示进入公交车的人数（第一项）和公交车站下车的人数（第二项）。
+        您的任务是返回在最后一个公交车站之后（最后一个阵列之后）仍在公交车上的人数。
+        虽然这是最后一班巴士站，但公共汽车并非空着，有些人还在公共汽车上，他们可能正在那里睡觉：D
+
+        请记住，测试用例确保总线中的人数始终> = 0.因此返回整数不能为负数。
+        第一个整数数组中的第二个值是0，因为第一个总线站中的总线是空的。
+     -->
+     <!-- 
+        Test.assertEquals(number([[10,0],[3,5],[5,8]]),5);
+        Test.assertEquals(number([[3,0],[9,1],[4,10],[12,2],[6,1],[7,10]]),17);
+        Test.assertEquals(number([[3,0],[9,1],[4,8],[12,2],[6,1],[7,8]]),21);
+      -->
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js对象常用方法</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    let obj1 = {label: 'a', value: '123'};
+
+    // assign 合并对象, 改变内存地址
+    Object.assign({}, obj1);
+
+    // keys 遍历对象, 返回key的数组
+    let keyArr = Object.keys(obj1);
+    console.log('keyArr', keyArr);
+    
+    // values 遍历对象, 返回value的数组
+    let valueArr = Object.values(obj1);
+    console.log('valueArr', valueArr);
+    
+    // getOwnPropertyNames 遍历对象, 为所欲为
+    Object.getOwnPropertyNames(obj1).forEach((key) => {
+        console.log(key + '---' + obj1[key]);
+    });
+
+    // hasOwnProperty 判断对象是否含有某个属性
+    // https://www.cnblogs.com/weiqinl/p/8683207.html
+
+    // defineProperty 数据劫持, Vue2双向数据绑定原理
+
+    function deepClone(obj) {
+        // 过滤特殊情况
+        if (obj === null) return null;
+        if (typeof obj !== "object") return obj;
+        if (obj instanceof RegExp) {
+            return new RegExp(obj);
+        }
+        if (obj instanceof Date) {
+            return new Date(obj);
+        }
+        // 不直接创建空对象, 克隆的结果和之前保持相同的所属类
+        let newObj = new obj.constructor;
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                newObj[key] = deepClone(obj[key]);
+            }
+        }
+        return newObj;
+    }
+    let objTest = {
+        id: 1,
+        name: '2323',
+        arr: [1, 2, 4],
+    }
+    let cloneOne = deepClone(objTest);
+    console.log('深拷贝', cloneOne);
+    let arrTest = [1, 2, 3, 4, 5];
+    let cloneArr = deepClone(arrTest);
+    console.log('深拷贝数组', cloneArr);
+
+
+
+</script>
+</html>

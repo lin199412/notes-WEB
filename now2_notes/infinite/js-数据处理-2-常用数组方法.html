@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js数组常用方法</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+
+    let arr1 = [{id: 1, state: 0}, {id: 2, state: 1}, {id: 3, state: 1}];
+    // filter 过滤数组
+    let arrFilter1 = arr1.filter((item, index) => item.state && index > 1);
+    // console.log('arrFilter1', arrFilter1);
+    // map 遍历数组, 返回新数组
+    let arrMap1 = arr1.map(item => item.id);
+    // console.log('arrMap1', arrMap1);
+    
+
+    // reduce 遍历数组, 从左到右迭代
+    let numberArr = [1, 3, 5, 7, 9];
+    function getSum(total, num) {
+        return total + num;
+    }
+    let numberSum = numberArr.reduce(getSum);
+    // console.log('叠加', numberSum);
+
+
+    // forEach 遍历数组, 对每一项执行操作
+    let numberArr2 = [2, 4, 6, 8 ,10];
+    function consoleLogArr(item, index) {
+        console.log("index[" + index + "]: " + item);
+    }
+    numberArr2.forEach(consoleLogArr);
+
+
+    let numberArr3 = [2, 4, 6, 8 ,10];
+    // for 遍历数组
+    for(let i = 0; i < numberArr3.length; i++) {
+        console.log("index[" + i + "]: " + numberArr3[i]);
+    }
+    // for...in 遍历数组
+    for(let i in numberArr3){
+        console.log("index[" + i + "]: " + numberArr3[i]);
+    }
+    // for...of 遍历数组
+    for(let i of numberArr3){
+        console.log('值', i); // 1 3 5 7 9
+    }
+
+
+    // 改变原数组
+    // 不改变原数组
+
+    // 数组去重2 - set
+    let arr11 = [1, 6, 4, 1, 6, 3, 4];
+    arr11 = [...new Set(arr11)];
+    // arr11 = Array.from(new Set(arr11));
+    console.log(arr11);
+    // 拓展：set里面为什么不能重复，set的实现原理？
+    
+
+</script>
+</html>
