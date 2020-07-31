@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js 柯里化 curry</title>
+    <script src="./cdn/lodash.min.js"></script>
+</head>
+<body>    
+</body>
+
+<script>
+/*
+  连续箭头函数:
+  连续使用ES6的箭头来定义函数, 可以快速定义简单的柯里化函数, 
+  具体实际应用如何, 有待探索发现
+*/
+
+// var curry = _.curry;
+
+
+let add1 = function (x) {
+  return function (y) {
+    return x + y
+  }
+}
+add1(2)(3) //=> 5
+// console.log(1, add1(2)(3));
+
+let add2 = (x, y) => x + y
+add2(2, 3) //=> 5
+// console.log(2, add2(2, 3));
+
+let add3 = x => y => x + y;
+add3(2)(3) //=> 5
+// console.log(3, add3(2)(3));
+
+let fn1 = x => y => z => x + y + z;
+fn1(1)(3)(5);
+console.log(fn1(1)(3)(5));
+
+    
+</script>
+
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js 自定义原型方法</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    /*  
+        1, 自定义数组原型方法 - 基本写法和传参
+        2, 如果不做深拷贝, 会改变原数组
+    */ 
+
+    // 1.基础--------------------------------------
+    /*  题目: 自定义multiply方法, 使得下列代码正常运行
+        const a = [1,2,3,4,5];
+        a.multiply()
+        console.log(a)  // [1,2,3,4,5,1,4,9,16,25]
+    */ 
+    Array.prototype.multiply = function() {
+        let _this = this;
+        const arryLength = _this && _this.length;
+        for (let i = 0; i < arryLength; i++) {
+            _this.push(_this[i] * _this[i])
+        }
+        return _this
+    };
+    let a = [1,2,3,4,5].multiply();
+    // console.log("multiply", a);
+
+
+    /*  题目: 自定义duplicator方法, 使得下列代码正常运行
+        const a = [1,2,3,4,5];
+        a.duplicator()
+        console.log(a)  // [1,2,3,4,5,1,2,3,4,5]
+    */ 
+    Array.prototype.duplicator = function() {
+        let s = this.concat(this)
+        return s
+    };
+    let t = [1,2,3,4,5].duplicator();
+    // console.log("duplicator", t);
+
+
+    // 2.升级----------------------------------------------------
+    /*  题目:
+        请为所有数组对象添加一个unique方法, 用于返回该数组中出现的元素列表
+        例如: [1,[2,3],[[4],[4,[4,5]]]].unique -> [1,2,3,4,5]
+    */
+    /*  思路:
+        1, 正则表达式
+        2, 递归遍历数组
+    */
+    Array.prototype.unique = function() {
+        let result = [];
+        let _this = this;
+        // 递归遍历数组
+        let fnSimplfy = function fnSimplfy(arr) {
+            for ( let i of arr) {
+                if (Array.isArray(i)) {
+                    fnSimplfy(i)
+                } else {
+                    result.push(i)
+                }
+            }
+        }
+        fnSimplfy(_this);
+        // 数组去重
+        result = [...new Set(result)];
+        return result;
+    };
+    let u = [1,[2,3],[[4],[4,[4,5]]]].unique();
+    // console.log("unique", u);
+
+    Array.prototype.unique2 = function() {
+        let result = [];
+        let arrStr = JSON.stringify(this);
+        let uniReg = /\w+/g; // 匹配字符
+        // let uniReg = /\d+/g; // 匹配数字
+        let regArr = arrStr.match(uniReg);
+        // 数组去重, 字符串转数字
+        result = [...new Set(regArr)].map(item => Number(item));
+        return result;
+    };
+    let u2 = [1,[2,3,66],[[4],[4,[4,5,66]]]].unique2();
+    // console.log("unique2", u2);
+
+
+    /*  题目:
+        请为所有数组对象添加一个findDuplicate(n)方法, 用于返回该数组中出现频率>=n的元素列表
+        例如: [1,2,3,4,1,2,1,4,5].findDuplicate(3) -> [1]
+    */ 
+    /*  知识点:
+        1, 自定义原型方法, 及其传参
+        2, 遍历数组
+    */
+    Array.prototype.findDuplicate = function(num) {
+        let result = [];
+        let _this = this;
+        let storeObj = {};
+        for (let i of _this) {
+            if (storeObj[i] >= 0) {
+                storeObj[i] = storeObj[i] + 1;
+            } else {
+                storeObj[i] = 1;
+            }
+        }
+        Object.getOwnPropertyNames(storeObj).forEach((key) => {
+            if(storeObj[key] >= num) result.push(key);
+        });
+        result = result.map(item => Number(item));
+        return result;
+    }
+    let f2 = [1,2,3,4,1,2,1,4,5].findDuplicate(3);
+    // console.log("findDuplicate", f2);
+
+
+    
+
+
+
+
+</script>
+</html>

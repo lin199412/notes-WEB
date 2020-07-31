@@ -3,51 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>js 测试</title>
 </head>
 <body>
     <button onclick="handleClick()">加一</button>
 </body>
 
 <script>
-let num = 0;
-let type = 'A';
+// let num = 0;
+// let type = 'A';
 
-function handleClick() {
-    console.log('初始 - type', type);
-    num ++;
+// function handleClick() {
+//     console.log('初始 - type', type);
+//     num ++;
 
-    if (num === 0) {
-        type = 'A';
-    } else if (num === 1) {
-        type = 'B';
-    } else if (num === 2) {
-        type = 'C';
-    } else {
-        type = 'D';
-    }
-    console.log('if - type', type);
+//     type = num === 0 ? 'A' : num === 1 ? 'B' : num === 2 ? 'C' : 'D';
+//     console.log('three - type', type);
 
-    switch(num) {
-        case 0:
-            type = 'A';
-            break;
-        case 1:
-            type = 'B';
-            break;
-        case 2:
-            type = 'C';
-            break;
-        default:
-            type = 'D';
-            break;
-    }
-    console.log('switch - type', type);
+// }
 
-    type = num === 0 ? 'A' : num === 1 ? 'B' : num === 2 ? 'C' : 'D';
-    console.log('three - type', type);
+// class Num{
+//    constructor (value) {
+//       this.value = value ;
+//    }      
+//    add5 () {
+//        return  new Num( this.value + 5)
+//    }
+//    double () {
+//        return  new Num( this.value * 2)
+//    }
+// }
+// var fnTest = new Num(2);
+// fnTest.add5().double();
+// console.log('fnTest.add5()', fnTest.add5().value);
+// console.log('fnTest.add5().double()', fnTest.add5().double().value);
 
-}
+let arr11 = [1, 2, 4, 6];
+let arr12 = [4, 6, 8, 10, 12];
+let arr22 = [
+    { id: 1, name: '11', order: 10 },
+    { id: 1, name: '11', order: 3 },
+    { id: 2, name: '22', order: 6 },
+    { id: 2, name: '22', order: 17 },
+    { id: 3, name: '22', order: 9 },
+];
+
+
+
+
 
 </script>
 </html>

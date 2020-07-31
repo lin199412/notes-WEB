@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js 链式写法</title>
+</head>
+<body>    
+</body>
+
+<script>
+/*
+    回调函数callback: 把函数作为参数传入, 满足某种条件时触发
+    优点: 可以根据需要传入不同的回调函数, 以此实现不同的功能
+    
+*/
+
+function sum (x, y, callback) {
+    let res = x + y;
+    if (res > 10) {
+        callback(res);
+        return;
+    }
+    console.log(res);
+    return res;
+}
+function sumCallBack(val) {
+    console.log('大于10', val);
+}
+sum(1, 3, sumCallBack);
+sum(1, 10, sumCallBack);
+
+
+
+
+    
+</script>
+
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js 柯里化 curry</title>
+    <script src="./cdn/lodash.min.js"></script>
+</head>
+<body>    
+</body>
+
+<script>
+
+/*
+    arguments对象在函数中的使用: 
+    定义函数时, 可以不定义形参, 在函数内部定义一个数组储存传入的参数,
+    调用函数时, 可以根据需要传入参数
+    (在ts中可以定义不限个数的参数)
+*/
+
+// 示例: 数据累加
+function argueTest() {
+    var fns = [].slice.call(arguments)
+    // console.log(fns); //-> [1, 2, 4]
+    return fns.reduce(function (a, b) {
+        return a + b;
+    })
+}
+let abc = argueTest(1,2,4);
+console.log('abc', abc); //-> 7
+
+// 示例: 求最大值
+function max() {
+    var max = arguments[0];
+    // console.log(arguments);
+    for (val of arguments) {
+        if (val >= max) {
+            max = val;
+        }
+    }
+    return max;
+}
+var maxValue = max('9', 1, 2, 4)
+console.log(maxValue); //-> '9'
+
+    
+
+    
+</script>
+
+
+</html>

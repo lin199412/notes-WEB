@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js 自定义原型方法</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+/*  
+    自定义数组原型方法 - 基本写法和传参
+*/ 
+
+/*  题目: 自定义hasSpace方法, 使得下列代码正常运行
+    let a = 'my name';
+    let b = 'god';
+    a.hasSpace(); //-> true
+    b.hasSpace(); //-> false
+*/
+String.prototype.hasSpace = function() {
+    let _this = this;
+    return /\s+/g.test(_this)
+};
+
+
+
+
+
+
+
+</script>
+</html>
